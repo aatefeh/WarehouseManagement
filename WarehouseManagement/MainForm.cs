@@ -64,12 +64,12 @@ namespace WarehouseManagement
                 if(implType==providerName) 
                 {
                     var dataProvider = (IDataProvider<IEntity>)Activator.CreateInstance(implType);
-                    var dataList = new List<List<object>>();
-                    //dataList = dataProvider.GetData();
-                    //foreach (List<object> objectlist in dataList)
-                    //{
-                    //    dataGridView1.DataSource = objectlist;
-                    //}
+                    var dataList = new List<IEntity>();
+                    dataList = dataProvider.GetData();
+                    foreach (var objectlist in dataList)
+                    {
+                        dataGridView1.DataSource = objectlist;
+                    }
                 }
             }
         }
