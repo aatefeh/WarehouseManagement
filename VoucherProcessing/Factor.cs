@@ -7,16 +7,16 @@ using WarehouseManagement;
 
 namespace VoucherProcessing
 {
-    public class Factor: IDataProvider<Factor>
+    public class Factor: IDataProvider<IEntity>
     {
         public int Order => 4;
 
         public string ButtonText => "فاکتور";
-        public List<Factor> GetData()
+        public List<IEntity> GetData()
         {
-            return new List<Factor>();
+            return new List<IEntity>();
         }
-        public void SaveAction(List<Factor> List)
+        public void SaveAction(List<IEntity> List)
         {
             throw new NotImplementedException();
         }

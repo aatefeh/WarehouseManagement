@@ -49,7 +49,7 @@ namespace WarehouseManagement
 
             var impls = allAssemblies
                 .SelectMany(assemble => assemble.GetTypes())
-                .Where(mytype => mytype.GetInterfaces().Contains(typeof(IDataProvider<>))).ToList();
+                .Where(mytype => mytype.GetInterfaces().Contains(typeof(IDataProvider<IEntity>))).ToList();
             return impls;
 
         }
