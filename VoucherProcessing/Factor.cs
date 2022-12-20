@@ -14,11 +14,13 @@ namespace VoucherProcessing
         public string ButtonText => "فاکتور";
         public List<IEntity> GetData()
         {
+            //var TestList = new List<IEntity>();
+            //TestList.Add(new IEntity("atefeh", "malek"));
             return new List<IEntity>();
         }
         public void SaveAction(List<IEntity> List)
         {
-            throw new NotImplementedException();
+            //throw new NotImplementedException();
         }
     }
 }

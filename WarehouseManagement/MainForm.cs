@@ -1,11 +1,13 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel;
 using System.Data;
 using System.Data.SqlClient;
 using System.Drawing;
 using System.IO;
 using System.Linq;
 using System.Reflection;
+using System.Windows.Controls;
 using System.Windows.Forms;
 using System.Windows.Navigation;
 
@@ -26,7 +28,7 @@ namespace WarehouseManagement
             {
                 var dataProvider = (IDataProvider<IEntity>)Activator.CreateInstance(implType);
                 ButtonProviderName = (Type)dataProvider.GetType();
-                var button = new Button { Text = dataProvider.ButtonText, Tag=dataProvider.Order};
+                var button = new System.Windows.Forms.Button { Text = dataProvider.ButtonText, Tag=dataProvider.Order};
                 button.Left = 20;
                 button.Top= (((int)button.Tag*10)+(((int)button.Tag-1)*button.Height));
                 button.Click += Button_Click;
@@ -72,6 +74,18 @@ namespace WarehouseManagement
                     }
                 }
             }
+        }
+
+
+
+        private void Save_Click(object sender, EventArgs e)
+        {
+            var newDataGridview = new DataGridView();
+            foreach (DataGridViewRow row in dataGridView1.Rows)
+            {
+                newDataGridview.Rows.Add(row);
+            }
+
         }
     }
 }
