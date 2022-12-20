@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 
 namespace WarehouseManagement
 {
+    public interface IEntity { }
     public interface IDataProvider<T>
     {
         int Order { get; }
