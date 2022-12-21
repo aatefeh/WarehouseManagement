@@ -25,12 +25,12 @@ namespace StoreManagement
             {
                 new Part
                 {
-                    Id = 1,
+                    Id = 111,
                     Name = "کالا 1"
                 },
                 new Part
                 {
-                    Id = 2,
+                    Id = 211,
                     Name = "کالا 2"
                 }
             };

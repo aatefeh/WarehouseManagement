@@ -15,6 +15,8 @@ namespace WarehouseManagement
 {
     public partial class MainForm : Form
     {
+        private Dictionary<int,Type> ButtonWasClicked = new Dictionary<int, Type>();
+        private int i = 0;
         public MainForm()
         {
             InitializeComponent();
@@ -40,6 +42,7 @@ namespace WarehouseManagement
             return impls;
 
         }
+
         private void MainForm_Load(object sender, EventArgs e)
         {
             var impls = GetAllAssembly();
@@ -47,30 +50,37 @@ namespace WarehouseManagement
             foreach (var implType in impls)
             {
                 var dataProvider = (IDataProvider)Activator.CreateInstance(implType);
-                ButtonProviderName = (Type)dataProvider.GetType();
-                var button = new System.Windows.Forms.Button { Text = dataProvider.ButtonText, Tag=dataProvider.Order};
+                var button = new System.Windows.Forms.Button { Text = dataProvider.ButtonText, Tag = dataProvider.Order };
+                ButtonWasClicked.Add((int)button.Tag, (Type)dataProvider.GetType());
                 button.Left = 20;
                 button.Top= (((int)button.Tag*10)+(((int)button.Tag-1)*button.Height));
                 button.Click += Button_Click;
                 this.panel1.Controls.Add(button);
+                i++;
             }
         }
-
-        private Type ButtonProviderName { get; set; }
         private void Button_Click(object sender, EventArgs e)
         {
-            dataGridView1.DataSource = null;
-            var providerName = (Type)ButtonProviderName;
-            var impls = GetAllAssembly();
-            foreach (var implType in impls)
+            System.Windows.Forms.Button btnsender = (System.Windows.Forms.Button)sender;
+            var d = (int)btnsender.Tag;
+            foreach (var clicked in ButtonWasClicked)
             {
-                if(implType==providerName) 
+                if(clicked.Key==d)
                 {
-                    var dataProvider = (IDataProvider)Activator.CreateInstance(implType);
-                    var dataList = dataProvider.GetData().ToList();
-                    dataGridView1.DataSource = dataList;
+                    dataGridView1.DataSource = null;
+                    var impls = GetAllAssembly();
+                    foreach (var implType in impls)
+                    {
+                        if (implType == clicked.Value)
+                        {
+                            var dataProvider = (IDataProvider)Activator.CreateInstance(implType);
+                            var dataList = dataProvider.GetData().ToList();
+                            dataGridView1.DataSource = dataList;
+                        }
+                    }
                 }
             }
+            
         }
         private void Save_Click(object sender, EventArgs e)
         {

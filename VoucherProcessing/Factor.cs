@@ -25,12 +25,12 @@ namespace VoucherProcessing
             {
                 new Factor
                 {
-                    Id = 1,
+                    Id = 115,
                     Name = "فاکتور 1"
                 },
                 new Factor
                 {
-                    Id = 2,
+                    Id = 215,
                     Name = "فاکتور 2"
                 }
             };

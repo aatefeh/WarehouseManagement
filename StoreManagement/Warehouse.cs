@@ -25,12 +25,12 @@ namespace StoreManagement
             {
                 new Warehouse
                 {
-                    Id = 1,
+                    Id = 1111,
                     Name = "انبار 1"
                 },
                 new Warehouse
                 {
-                    Id = 2,
+                    Id = 2111,
                     Name = "انبار 2"
                 }
             };
