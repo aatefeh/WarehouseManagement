@@ -8,7 +8,5 @@ namespace WarehouseManagement
 {
     public interface IEntity
     {
-        string FirstName { get; set; }
-        string LastName { get; set; }
     }
 }

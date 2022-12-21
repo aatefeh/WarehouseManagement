@@ -19,23 +19,6 @@ namespace WarehouseManagement
         {
             InitializeComponent();
         }
-
-        private void MainForm_Load(object sender, EventArgs e)
-        {
-            var impls = GetAllAssembly();
-            //Button
-            foreach (var implType in impls)
-            {
-                var dataProvider = (IDataProvider<IEntity>)Activator.CreateInstance(implType);
-                ButtonProviderName = (Type)dataProvider.GetType();
-                var button = new System.Windows.Forms.Button { Text = dataProvider.ButtonText, Tag=dataProvider.Order};
-                button.Left = 20;
-                button.Top= (((int)button.Tag*10)+(((int)button.Tag-1)*button.Height));
-                button.Click += Button_Click;
-                this.panel1.Controls.Add(button);
-            }
-        }
-
         private List<Type> GetAllAssembly()
         {
             var currentBinPath = Path.GetDirectoryName(Assembly.GetExecutingAssembly().Location);
@@ -55,6 +38,22 @@ namespace WarehouseManagement
             return impls;
 
         }
+        private void MainForm_Load(object sender, EventArgs e)
+        {
+            var impls = GetAllAssembly();
+            //Button
+            foreach (var implType in impls)
+            {
+                var dataProvider = (IDataProvider<IEntity>)Activator.CreateInstance(implType);
+                ButtonProviderName = (Type)dataProvider.GetType();
+                var button = new System.Windows.Forms.Button { Text = dataProvider.ButtonText, Tag=dataProvider.Order};
+                button.Left = 20;
+                button.Top= (((int)button.Tag*10)+(((int)button.Tag-1)*button.Height));
+                button.Click += Button_Click;
+                this.panel1.Controls.Add(button);
+            }
+        }
+
         private Type ButtonProviderName { get; set; }
         private void Button_Click(object sender, EventArgs e)
         {
