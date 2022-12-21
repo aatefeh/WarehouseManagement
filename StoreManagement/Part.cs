@@ -15,9 +15,9 @@ namespace StoreManagement
 
     public class PartProvider : IDataProvider
     {
-        public int Order => 1;
+        public int Order => 2;
 
-        public string ButtonText => "انبار";
+        public string ButtonText => "کالا";
 
         public IReadOnlyCollection<IEntity> GetData()
         {
