@@ -7,16 +7,19 @@ using WarehouseManagement;
 
 namespace VoucherProcessing
 {
-    public class Factor: IDataProvider<IEntity>
+    public class Factor : IDataProvider<IEntity>, IEntity
     {
         public int Order => 4;
 
         public string ButtonText => "فاکتور";
+
+        public object Data => "atefeh";
+
         public List<IEntity> GetData()
         {
-            //var TestList = new List<IEntity>();
-            //TestList.Add(new IEntity("atefeh", "malek"));
-            return new List<IEntity>();
+            var ListOfData = new List<IEntity>();
+            ListOfData.Add((IEntity)Data);
+            return ListOfData;
         }
         public void SaveAction(List<IEntity> List)
         {

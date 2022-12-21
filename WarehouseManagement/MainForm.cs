@@ -67,16 +67,10 @@ namespace WarehouseManagement
                     var dataProvider = (IDataProvider<IEntity>)Activator.CreateInstance(implType);
                     var dataList = new List<IEntity>();
                     dataList = dataProvider.GetData();
-                    foreach (var objectlist in dataList)
-                    {
-                        dataGridView1.DataSource = objectlist;
-                    }
+                    dataGridView1.DataSource = dataList;
                 }
             }
         }
-
-
-
         private void Save_Click(object sender, EventArgs e)
         {
             var newDataGridview = new DataGridView();
