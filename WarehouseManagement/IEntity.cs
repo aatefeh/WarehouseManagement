@@ -8,6 +8,6 @@ namespace WarehouseManagement
 {
     public interface IEntity
     {
-        object Data { get; }
+        int Id { get; set; }
     }
 }

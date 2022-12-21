@@ -5,33 +5,33 @@ using System.Text;
 using System.Threading.Tasks;
 using WarehouseManagement;
 
-namespace VoucherProcessing
+namespace StoreManagement
 {
-    public class Factor : IEntity
+    public class Warehouse : IEntity
     {
         public int Id { get; set; }
         public string Name { get; set; }
     }
 
-    public class FactorProvider : IDataProvider
+    public class WarehouseProvider : IDataProvider
     {
-        public int Order =>4;
+        public int Order => 1;
 
-        public string ButtonText => "فاکتور";
+        public string ButtonText => "انبار";
 
         public IReadOnlyCollection<IEntity> GetData()
         {
-            return new List<Factor>
+            return new List<Warehouse>
             {
-                new Factor
+                new Warehouse
                 {
                     Id = 1,
-                    Name = "فاکتور 1"
+                    Name = "انبار 1"
                 },
-                new Factor
+                new Warehouse
                 {
                     Id = 2,
-                    Name = "فاکتور 2"
+                    Name = "انبار 2"
                 }
             };
         }
@@ -42,4 +42,3 @@ namespace VoucherProcessing
         }
     }
 }
- 

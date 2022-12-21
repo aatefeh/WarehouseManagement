@@ -1,11 +1,13 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio Version 17
-VisualStudioVersion = 17.4.33205.214
+# Visual Studio Version 16
+VisualStudioVersion = 16.0.33027.164
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WarehouseManagement", "WarehouseManagement.csproj", "{972B56F6-D4D0-4213-9C3F-6FF254986BA8}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "VoucherProcessing", "..\VoucherProcessing\VoucherProcessing.csproj", "{A5BEEECB-0B02-4AD4-8AC6-1EE027243F10}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "StoreManagement", "..\StoreManagement\StoreManagement.csproj", "{C2674CBF-F3A3-4324-8143-DC20A1B8276F}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -21,6 +23,10 @@ Global
 		{A5BEEECB-0B02-4AD4-8AC6-1EE027243F10}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{A5BEEECB-0B02-4AD4-8AC6-1EE027243F10}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{A5BEEECB-0B02-4AD4-8AC6-1EE027243F10}.Release|Any CPU.Build.0 = Release|Any CPU
+		{C2674CBF-F3A3-4324-8143-DC20A1B8276F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{C2674CBF-F3A3-4324-8143-DC20A1B8276F}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{C2674CBF-F3A3-4324-8143-DC20A1B8276F}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{C2674CBF-F3A3-4324-8143-DC20A1B8276F}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

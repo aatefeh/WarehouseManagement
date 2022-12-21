@@ -32,9 +32,11 @@ namespace WarehouseManagement
                 allAssemblies.Add(Assembly.LoadFile(dll));
             }
 
-            var impls = allAssemblies
-                .SelectMany(assemble => assemble.GetTypes())
-                .Where(mytype => mytype.GetInterfaces().Contains(typeof(IDataProvider<IEntity>))).ToList();
+            var allTypes = allAssemblies
+                .SelectMany(assemble => assemble.GetTypes());
+
+            var impls = allTypes
+                .Where(mytype => mytype.GetInterfaces().Contains(typeof(IDataProvider))).ToList();
             return impls;
 
         }
@@ -44,7 +46,7 @@ namespace WarehouseManagement
             //Button
             foreach (var implType in impls)
             {
-                var dataProvider = (IDataProvider<IEntity>)Activator.CreateInstance(implType);
+                var dataProvider = (IDataProvider)Activator.CreateInstance(implType);
                 ButtonProviderName = (Type)dataProvider.GetType();
                 var button = new System.Windows.Forms.Button { Text = dataProvider.ButtonText, Tag=dataProvider.Order};
                 button.Left = 20;
@@ -64,9 +66,8 @@ namespace WarehouseManagement
             {
                 if(implType==providerName) 
                 {
-                    var dataProvider = (IDataProvider<IEntity>)Activator.CreateInstance(implType);
-                    var dataList = new List<IEntity>();
-                    dataList = dataProvider.GetData();
+                    var dataProvider = (IDataProvider)Activator.CreateInstance(implType);
+                    var dataList = dataProvider.GetData().ToList();
                     dataGridView1.DataSource = dataList;
                 }
             }

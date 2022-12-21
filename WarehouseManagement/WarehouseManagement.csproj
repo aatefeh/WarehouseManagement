@@ -52,6 +52,7 @@
   <ItemGroup>
     <Compile Include="IDataProvider.cs" />
     <Compile Include="IEntity.cs" />
+    <Compile Include="IEntitybusiness.cs" />
     <Compile Include="MainForm.cs">
       <SubType>Form</SubType>
     </Compile>
