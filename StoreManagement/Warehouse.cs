@@ -20,27 +20,30 @@ namespace StoreManagement
 
         public string ButtonText => "انبار";
 
-        public IReadOnlyCollection<IEntity> GetData()
+        public string GetData()
         {
+            string command = "select * from warehouse";
+            return command;
             //return new DataSet();
-            return new List<Warehouse>
-            {
-                new Warehouse
-                {
-                    Id = 1111,
-                    Name = "انبار 1"
-                },
-                new Warehouse
-                {
-                    Id = 2111,
-                    Name = "انبار 2"
-                }
-            };
+            //return new List<Warehouse>
+            //{
+            //    new Warehouse
+            //    {
+            //        Id = 1111,
+            //        Name = "انبار 1"
+            //    },
+            //    new Warehouse
+            //    {
+            //        Id = 2111,
+            //        Name = "انبار 2"
+            //    }
+            //};
         }
 
-        public void SaveAction(IReadOnlyCollection<IEntity> Lists)
+        public string SaveAction(IReadOnlyCollection<IEntity> Lists)
         {
-            throw new NotImplementedException();
+            string command = "select * from Table";
+            return command;
         }
     }
 }

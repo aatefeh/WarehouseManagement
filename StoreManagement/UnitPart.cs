@@ -20,25 +20,27 @@ namespace StoreManagement
 
         public string ButtonText => "واحد سنجش";
 
-        public IReadOnlyCollection<IEntity> GetData()
+        public string GetData()
         {
+            string command = "select * from unit";
+            return command;
             //return new DataSet();
-            return new List<UnitPart>
-            {
-                new UnitPart
-                {
-                    Id = 5552,
-                    Name = "واحد سنجش 1"
-                },
-                new UnitPart
-                {
-                    Id = 5558,
-                    Name = "واحد سنجش 2"
-                }
-            };
+            //return new List<UnitPart>
+            //{
+            //    new UnitPart
+            //    {
+            //        Id = 5552,
+            //        Name = "واحد سنجش 1"
+            //    },
+            //    new UnitPart
+            //    {
+            //        Id = 5558,
+            //        Name = "واحد سنجش 2"
+            //    }
+            //};
         }
 
-        public void SaveAction(IReadOnlyCollection<IEntity> Lists)
+        public string SaveAction(IReadOnlyCollection<IEntity> Lists)
         {
             throw new NotImplementedException();
         }

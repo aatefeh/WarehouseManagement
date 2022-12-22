@@ -20,24 +20,26 @@ namespace StoreManagement
 
         public string ButtonText => "کالا";
 
-        public IReadOnlyCollection<IEntity> GetData()
+        public string GetData()
         {
-            return new List<Part>
-            {
-                new Part
-                {
-                    Id = 111,
-                    Name = "کالا 1"
-                },
-                new Part
-                {
-                    Id = 211,
-                    Name = "کالا 2"
-                }
-            };
+            string command = "select * from good";
+            return command;
+            //return new List<Part>
+            //{
+            //    new Part
+            //    {
+            //        Id = 111,
+            //        Name = "کالا 1"
+            //    },
+            //    new Part
+            //    {
+            //        Id = 211,
+            //        Name = "کالا 2"
+            //    }
+            //};
         }
 
-        public void SaveAction(IReadOnlyCollection<IEntity> Lists)
+        public string SaveAction(IReadOnlyCollection<IEntity> Lists)
         {
             throw new NotImplementedException();
         }
