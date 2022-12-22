@@ -20,7 +20,8 @@ namespace WarehouseManagement
         private Dictionary<int,Type> ButtonWasClicked = new Dictionary<int, Type>();
         private int i = 0;
         SqlConnection con = new SqlConnection("Data Source=DESKTOP-D26MECS;Initial Catalog=HR;Integrated Security=True");
-        DataSet ds = new DataSet();
+        SqlDataAdapter da;
+        DataSet ds;
         private Type LastClickeTable;
         public MainForm()
         {
@@ -82,7 +83,8 @@ namespace WarehouseManagement
                             var dataProvider = (IDataProvider)Activator.CreateInstance(implType);
                             con.Open();
                             string command=(string)dataProvider.GetData();
-                            SqlDataAdapter da = new SqlDataAdapter(command, con);
+                            da = new SqlDataAdapter(command, con);
+                            ds = new DataSet();
                             da.Fill(ds,"Table");
                             dataGridView1.DataSource = ds;
                             dataGridView1.DataMember= "Table";
@@ -104,8 +106,8 @@ namespace WarehouseManagement
                     var dataProvider = (IDataProvider)Activator.CreateInstance(implType);
                     string commandsave = (string)dataProvider.SaveAction();
                     SqlDataAdapter dataAdapter = new SqlDataAdapter(commandsave, con);
-                    SqlCommandBuilder sqlCB = new SqlCommandBuilder(dataAdapter);
-                    dataAdapter.Update(ds, "Table");
+                    SqlCommandBuilder sqlCB = new SqlCommandBuilder(da);
+                    da.Update(ds, "Table");
                     break;
                 }
             }
