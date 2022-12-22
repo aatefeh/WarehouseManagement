@@ -25,12 +25,12 @@ namespace StoreManagement
             {
                 new UnitPart
                 {
-                    Id = 1,
+                    Id = 222222222222,
                     Name = "واحد سنجش 1"
                 },
                 new UnitPart
                 {
-                    Id = 2,
+                    Id = 88888888888888,
                     Name = "واحد سنجش 2"
                 }
             };
