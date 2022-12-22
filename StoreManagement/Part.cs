@@ -20,21 +20,21 @@ namespace StoreManagement
 
         public string ButtonText => "کالا";
 
-        public DataSet GetData()
+        public IReadOnlyCollection<IEntity> GetData()
         {
-            return new DataSet();
-            //{
-            //    new Part
-            //    {
-            //        Id = 111,
-            //        Name = "کالا 1"
-            //    },
-            //    new Part
-            //    {
-            //        Id = 211,
-            //        Name = "کالا 2"
-            //    }
-            //};
+            return new List<Part>
+            {
+                new Part
+                {
+                    Id = 111,
+                    Name = "کالا 1"
+                },
+                new Part
+                {
+                    Id = 211,
+                    Name = "کالا 2"
+                }
+            };
         }
 
         public void SaveAction(IReadOnlyCollection<IEntity> Lists)
