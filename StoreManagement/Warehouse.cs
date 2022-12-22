@@ -24,26 +24,13 @@ namespace StoreManagement
         {
             string command = "select * from warehouse";
             return command;
-            //return new DataSet();
-            //return new List<Warehouse>
-            //{
-            //    new Warehouse
-            //    {
-            //        Id = 1111,
-            //        Name = "انبار 1"
-            //    },
-            //    new Warehouse
-            //    {
-            //        Id = 2111,
-            //        Name = "انبار 2"
-            //    }
-            //};
         }
 
-        public string SaveAction(IReadOnlyCollection<IEntity> Lists)
+        public string SaveAction()
         {
-            string command = "select * from Table";
+            string command = "UPDATE warehouse SET warehouse_id=@warehouse_id,warehouse_name=@warehouse_name";
             return command;
         }
     }
 }
+

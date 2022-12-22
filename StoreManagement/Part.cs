@@ -24,24 +24,12 @@ namespace StoreManagement
         {
             string command = "select * from good";
             return command;
-            //return new List<Part>
-            //{
-            //    new Part
-            //    {
-            //        Id = 111,
-            //        Name = "کالا 1"
-            //    },
-            //    new Part
-            //    {
-            //        Id = 211,
-            //        Name = "کالا 2"
-            //    }
-            //};
         }
 
-        public string SaveAction(IReadOnlyCollection<IEntity> Lists)
+        public string SaveAction()
         {
-            throw new NotImplementedException();
+            string command = "UPDATE good SET good_id=@good_id,good_name=@good_name,unit_id=@unit_id";
+            return command;
         }
     }
 }

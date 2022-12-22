@@ -20,6 +20,7 @@ namespace WarehouseManagement
         private Dictionary<int,Type> ButtonWasClicked = new Dictionary<int, Type>();
         private int i = 0;
         SqlConnection con = new SqlConnection("Data Source=DESKTOP-D26MECS;Initial Catalog=HR;Integrated Security=True");
+        DataSet ds = new DataSet();
         private Type LastClickeTable;
         public MainForm()
         {
@@ -82,7 +83,6 @@ namespace WarehouseManagement
                             con.Open();
                             string command=(string)dataProvider.GetData();
                             SqlDataAdapter da = new SqlDataAdapter(command, con);
-                            DataSet ds = new DataSet();
                             da.Fill(ds,"Table");
                             dataGridView1.DataSource = ds;
                             dataGridView1.DataMember= "Table";
@@ -96,22 +96,19 @@ namespace WarehouseManagement
         }
         private void Save_Click(object sender, EventArgs e)
         {
-            
             var impls = GetAllAssembly();
             foreach (var implType in impls)
             {
                 if (implType == LastClickeTable)
                 {
                     var dataProvider = (IDataProvider)Activator.CreateInstance(implType);
-                    for (int item = 0; item <= dataGridView1.RowCount - 1; item++)
-                    {
-                        string commandsave = (string)dataProvider.SaveAction();
-                        SqlDataAdapter dataAdapter = new SqlDataAdapter(commandsave, con);
-                    }
+                    string commandsave = (string)dataProvider.SaveAction();
+                    SqlDataAdapter dataAdapter = new SqlDataAdapter(commandsave, con);
+                    SqlCommandBuilder sqlCB = new SqlCommandBuilder(dataAdapter);
+                    dataAdapter.Update(ds, "Table");
                     break;
                 }
             }
-            break;
             //SqlDataAdapter dataAdapter=new SqlDataAdapter("select * from Table")
         }
         }

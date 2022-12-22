@@ -27,24 +27,11 @@ namespace VoucherProcessing
         {
             string command = "select * from factor";
             return command;
-            //return new List<Factor>
-            //{
-            //    new Factor
-            //    {
-            //        Id = 115,
-            //        Name = "فاکتور 1"
-            //    },
-            //    new Factor
-            //    {
-            //        Id = 215,
-            //        Name = "فاکتور 2"
-            //    }
-            //};
         }
 
-        public string SaveAction(/*IReadOnlyCollection<IEntity> Lists*/)
+        public string SaveAction()
         {
-            string command = "UPDATE factor Table";
+            string command = "UPDATE factor SET factor_id=@factor_id,factor_date=@factor_date,factor_type=@factor_type,customer_id=@customer_id";
             return command;
         }
     }

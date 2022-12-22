@@ -26,9 +26,10 @@ namespace StoreManagement
             return command;
         }
 
-        public string SaveAction(IReadOnlyCollection<IEntity> Lists)
+        public string SaveAction()
         {
-            throw new NotImplementedException();
+            string command = "UPDATE unit SET unit_id=@unit_id,unit_name=@unit_name";
+            return command;
         }
     }
 }
