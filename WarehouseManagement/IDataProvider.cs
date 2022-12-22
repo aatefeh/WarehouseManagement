@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Data;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -10,7 +11,7 @@ namespace WarehouseManagement
     {
         int Order { get; }
         string ButtonText { get; }
-        IReadOnlyCollection<IEntity> GetData();
+        DataSet GetData();
         void SaveAction(IReadOnlyCollection<IEntity> Lists);
 
     }

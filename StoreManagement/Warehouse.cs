@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Data;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -19,21 +20,22 @@ namespace StoreManagement
 
         public string ButtonText => "انبار";
 
-        public IReadOnlyCollection<IEntity> GetData()
+        public DataSet GetData()
         {
-            return new List<Warehouse>
-            {
-                new Warehouse
-                {
-                    Id = 1111,
-                    Name = "انبار 1"
-                },
-                new Warehouse
-                {
-                    Id = 2111,
-                    Name = "انبار 2"
-                }
-            };
+            return new DataSet();
+            //return new List<Warehouse>
+            //{
+            //    new Warehouse
+            //    {
+            //        Id = 1111,
+            //        Name = "انبار 1"
+            //    },
+            //    new Warehouse
+            //    {
+            //        Id = 2111,
+            //        Name = "انبار 2"
+            //    }
+            //};
         }
 
         public void SaveAction(IReadOnlyCollection<IEntity> Lists)
