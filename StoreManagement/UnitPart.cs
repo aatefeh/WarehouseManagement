@@ -24,20 +24,6 @@ namespace StoreManagement
         {
             string command = "select * from unit";
             return command;
-            //return new DataSet();
-            //return new List<UnitPart>
-            //{
-            //    new UnitPart
-            //    {
-            //        Id = 5552,
-            //        Name = "واحد سنجش 1"
-            //    },
-            //    new UnitPart
-            //    {
-            //        Id = 5558,
-            //        Name = "واحد سنجش 2"
-            //    }
-            //};
         }
 
         public string SaveAction(IReadOnlyCollection<IEntity> Lists)

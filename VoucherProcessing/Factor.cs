@@ -42,9 +42,9 @@ namespace VoucherProcessing
             //};
         }
 
-        public string SaveAction(IReadOnlyCollection<IEntity> Lists)
+        public string SaveAction(/*IReadOnlyCollection<IEntity> Lists*/)
         {
-            string command = "select * from Table";
+            string command = "UPDATE factor Table";
             return command;
         }
     }

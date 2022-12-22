@@ -96,20 +96,23 @@ namespace WarehouseManagement
         }
         private void Save_Click(object sender, EventArgs e)
         {
+            
             var impls = GetAllAssembly();
             foreach (var implType in impls)
             {
                 if (implType == LastClickeTable)
                 {
                     var dataProvider = (IDataProvider)Activator.CreateInstance(implType);
-                    StringFormat commandsave = (string)dataProvider.SaveAction();
-                    SqlDataAdapter dataAdapter = new SqlDataAdapter("select * from Table",con);
-                    return command;)
+                    for (int item = 0; item <= dataGridView1.RowCount - 1; item++)
+                    {
+                        string commandsave = (string)dataProvider.SaveAction();
+                        SqlDataAdapter dataAdapter = new SqlDataAdapter(commandsave, con);
+                    }
                     break;
                 }
             }
             break;
-            SqlDataAdapter dataAdapter=new SqlDataAdapter("select * from Table")
+            //SqlDataAdapter dataAdapter=new SqlDataAdapter("select * from Table")
         }
         }
 }
