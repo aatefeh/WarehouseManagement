@@ -21,12 +21,12 @@ namespace VoucherProcessing.Factor
 
         public string GetData()
         {
-            using(var context = new HREntities())
-            {
-                context.factors.Add(); 
+            //using(var context = new HREntities())
+            //{
+            //    context.factors.Add(); 
 
-                context.SaveChanges();
-            }
+            //    context.SaveChanges();
+            ////}
             string command = "select * from factor";
             return command;
         }
