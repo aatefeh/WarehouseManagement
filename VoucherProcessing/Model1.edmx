@@ -1,0 +1,388 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+      <Schema Namespace="HRModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="customer">
+          <Key>
+            <PropertyRef Name="customer_id" />
+          </Key>
+          <Property Name="customer_id" Type="bigint" Nullable="false" />
+          <Property Name="customer_name" Type="nvarchar" MaxLength="1" Nullable="false" />
+        </EntityType>
+        <EntityType Name="factor">
+          <Key>
+            <PropertyRef Name="factor_id" />
+          </Key>
+          <Property Name="factor_id" Type="bigint" Nullable="false" />
+          <Property Name="factor_date" Type="datetime" Nullable="false" />
+          <Property Name="factor_type" Type="nvarchar" MaxLength="10" Nullable="false" />
+          <Property Name="customer_id" Type="bigint" Nullable="false" />
+        </EntityType>
+        <!--Errors Found During Generation:
+warning 6002: The table/view 'HR.dbo.factor_item' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+        <EntityType Name="factor_item">
+          <Key>
+            <PropertyRef Name="factor_id" />
+            <PropertyRef Name="warehouse_id" />
+            <PropertyRef Name="good_id" />
+            <PropertyRef Name="good_number" />
+          </Key>
+          <Property Name="factor_id" Type="bigint" Nullable="false" />
+          <Property Name="warehouse_id" Type="bigint" Nullable="false" />
+          <Property Name="good_id" Type="bigint" Nullable="false" />
+          <Property Name="good_number" Type="bigint" Nullable="false" />
+        </EntityType>
+        <EntityType Name="good">
+          <Key>
+            <PropertyRef Name="good_id" />
+          </Key>
+          <Property Name="good_id" Type="bigint" Nullable="false" />
+          <Property Name="good_name" Type="nvarchar" MaxLength="100" Nullable="false" />
+          <Property Name="unit_id" Type="bigint" Nullable="false" />
+        </EntityType>
+        <EntityType Name="unit">
+          <Key>
+            <PropertyRef Name="unit_id" />
+          </Key>
+          <Property Name="unit_id" Type="bigint" Nullable="false" />
+          <Property Name="unit_name" Type="nvarchar" MaxLength="100" Nullable="false" />
+        </EntityType>
+        <EntityType Name="warehouse">
+          <Key>
+            <PropertyRef Name="warehouse_id" />
+          </Key>
+          <Property Name="warehouse_id" Type="bigint" Nullable="false" />
+          <Property Name="warehouse_name" Type="nvarchar" MaxLength="100" Nullable="false" />
+        </EntityType>
+        <!--Errors Found During Generation:
+warning 6002: The table/view 'HR.dbo.warehouse_good' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+        <EntityType Name="warehouse_good">
+          <Key>
+            <PropertyRef Name="warehouse_id" />
+            <PropertyRef Name="good_id" />
+          </Key>
+          <Property Name="warehouse_id" Type="bigint" Nullable="false" />
+          <Property Name="good_id" Type="bigint" Nullable="false" />
+        </EntityType>
+        <Association Name="FK__customer_id">
+          <End Role="customer" Type="Self.customer" Multiplicity="1" />
+          <End Role="customer1" Type="Self.customer" Multiplicity="0..1" />
+          <ReferentialConstraint>
+            <Principal Role="customer">
+              <PropertyRef Name="customer_id" />
+            </Principal>
+            <Dependent Role="customer1">
+              <PropertyRef Name="customer_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__factor_id">
+          <End Role="factor" Type="Self.factor" Multiplicity="1" />
+          <End Role="factor_item" Type="Self.factor_item" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="factor">
+              <PropertyRef Name="factor_id" />
+            </Principal>
+            <Dependent Role="factor_item">
+              <PropertyRef Name="factor_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__good_id">
+          <End Role="good" Type="Self.good" Multiplicity="1" />
+          <End Role="warehouse_good" Type="Self.warehouse_good" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="good">
+              <PropertyRef Name="good_id" />
+            </Principal>
+            <Dependent Role="warehouse_good">
+              <PropertyRef Name="good_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__unit_id">
+          <End Role="unit" Type="Self.unit" Multiplicity="1" />
+          <End Role="good" Type="Self.good" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="unit">
+              <PropertyRef Name="unit_id" />
+            </Principal>
+            <Dependent Role="good">
+              <PropertyRef Name="unit_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__warehouse_id">
+          <End Role="warehouse" Type="Self.warehouse" Multiplicity="1" />
+          <End Role="warehouse_good" Type="Self.warehouse_good" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="warehouse">
+              <PropertyRef Name="warehouse_id" />
+            </Principal>
+            <Dependent Role="warehouse_good">
+              <PropertyRef Name="warehouse_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="HRModelStoreContainer">
+          <EntitySet Name="customer" EntityType="Self.customer" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="factor" EntityType="Self.factor" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="good" EntityType="Self.good" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="unit" EntityType="Self.unit" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="warehouse" EntityType="Self.warehouse" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="factor_item" EntityType="Self.factor_item" store:Type="Tables" store:Schema="dbo">
+            <DefiningQuery>SELECT 
+    [factor_item].[factor_id] AS [factor_id], 
+    [factor_item].[warehouse_id] AS [warehouse_id], 
+    [factor_item].[good_id] AS [good_id], 
+    [factor_item].[good_number] AS [good_number]
+    FROM [dbo].[factor_item] AS [factor_item]</DefiningQuery>
+          </EntitySet>
+          <EntitySet Name="warehouse_good" EntityType="Self.warehouse_good" store:Type="Tables" store:Schema="dbo">
+            <DefiningQuery>SELECT 
+    [warehouse_good].[warehouse_id] AS [warehouse_id], 
+    [warehouse_good].[good_id] AS [good_id]
+    FROM [dbo].[warehouse_good] AS [warehouse_good]</DefiningQuery>
+          </EntitySet>
+          <AssociationSet Name="FK__customer_id" Association="Self.FK__customer_id">
+            <End Role="customer" EntitySet="customer" />
+            <End Role="customer1" EntitySet="customer" />
+          </AssociationSet>
+          <AssociationSet Name="FK__factor_id" Association="Self.FK__factor_id">
+            <End Role="factor" EntitySet="factor" />
+            <End Role="factor_item" EntitySet="factor_item" />
+          </AssociationSet>
+          <AssociationSet Name="FK__good_id" Association="Self.FK__good_id">
+            <End Role="good" EntitySet="good" />
+            <End Role="warehouse_good" EntitySet="warehouse_good" />
+          </AssociationSet>
+          <AssociationSet Name="FK__unit_id" Association="Self.FK__unit_id">
+            <End Role="unit" EntitySet="unit" />
+            <End Role="good" EntitySet="good" />
+          </AssociationSet>
+          <AssociationSet Name="FK__warehouse_id" Association="Self.FK__warehouse_id">
+            <End Role="warehouse" EntitySet="warehouse" />
+            <End Role="warehouse_good" EntitySet="warehouse_good" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="HRModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="customer">
+          <Key>
+            <PropertyRef Name="customer_id" />
+          </Key>
+          <Property Name="customer_id" Type="Int64" Nullable="false" />
+          <Property Name="customer_name" Type="String" MaxLength="1" FixedLength="false" Unicode="true" Nullable="false" />
+          <NavigationProperty Name="customer1" Relationship="Self.FK__customer_id" FromRole="customer" ToRole="customer1" />
+          <NavigationProperty Name="customer2" Relationship="Self.FK__customer_id" FromRole="customer1" ToRole="customer" />
+        </EntityType>
+        <EntityType Name="factor">
+          <Key>
+            <PropertyRef Name="factor_id" />
+          </Key>
+          <Property Name="factor_id" Type="Int64" Nullable="false" />
+          <Property Name="factor_date" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="factor_type" Type="String" MaxLength="10" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="customer_id" Type="Int64" Nullable="false" />
+          <NavigationProperty Name="factor_item" Relationship="Self.FK__factor_id" FromRole="factor" ToRole="factor_item" />
+        </EntityType>
+        <EntityType Name="good">
+          <Key>
+            <PropertyRef Name="good_id" />
+          </Key>
+          <Property Name="good_id" Type="Int64" Nullable="false" />
+          <Property Name="good_name" Type="String" MaxLength="100" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="unit_id" Type="Int64" Nullable="false" />
+          <NavigationProperty Name="unit" Relationship="Self.FK__unit_id" FromRole="good" ToRole="unit" />
+          <NavigationProperty Name="warehouses" Relationship="Self.warehouse_good" FromRole="good" ToRole="warehouse" />
+        </EntityType>
+        <EntityType Name="unit">
+          <Key>
+            <PropertyRef Name="unit_id" />
+          </Key>
+          <Property Name="unit_id" Type="Int64" Nullable="false" />
+          <Property Name="unit_name" Type="String" MaxLength="100" FixedLength="false" Unicode="true" Nullable="false" />
+          <NavigationProperty Name="goods" Relationship="Self.FK__unit_id" FromRole="unit" ToRole="good" />
+        </EntityType>
+        <EntityType Name="warehouse">
+          <Key>
+            <PropertyRef Name="warehouse_id" />
+          </Key>
+          <Property Name="warehouse_id" Type="Int64" Nullable="false" />
+          <Property Name="warehouse_name" Type="String" MaxLength="100" FixedLength="false" Unicode="true" Nullable="false" />
+          <NavigationProperty Name="goods" Relationship="Self.warehouse_good" FromRole="warehouse" ToRole="good" />
+        </EntityType>
+        <EntityType Name="factor_item">
+          <Key>
+            <PropertyRef Name="factor_id" />
+            <PropertyRef Name="warehouse_id" />
+            <PropertyRef Name="good_id" />
+            <PropertyRef Name="good_number" />
+          </Key>
+          <Property Name="factor_id" Type="Int64" Nullable="false" />
+          <Property Name="warehouse_id" Type="Int64" Nullable="false" />
+          <Property Name="good_id" Type="Int64" Nullable="false" />
+          <Property Name="good_number" Type="Int64" Nullable="false" />
+          <NavigationProperty Name="factor" Relationship="Self.FK__factor_id" FromRole="factor_item" ToRole="factor" />
+        </EntityType>
+        <Association Name="FK__customer_id">
+          <End Role="customer" Type="Self.customer" Multiplicity="1" />
+          <End Role="customer1" Type="Self.customer" Multiplicity="0..1" />
+          <ReferentialConstraint>
+            <Principal Role="customer">
+              <PropertyRef Name="customer_id" />
+            </Principal>
+            <Dependent Role="customer1">
+              <PropertyRef Name="customer_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__factor_id">
+          <End Role="factor" Type="Self.factor" Multiplicity="1" />
+          <End Role="factor_item" Type="Self.factor_item" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="factor">
+              <PropertyRef Name="factor_id" />
+            </Principal>
+            <Dependent Role="factor_item">
+              <PropertyRef Name="factor_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__unit_id">
+          <End Role="unit" Type="Self.unit" Multiplicity="1" />
+          <End Role="good" Type="Self.good" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="unit">
+              <PropertyRef Name="unit_id" />
+            </Principal>
+            <Dependent Role="good">
+              <PropertyRef Name="unit_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="warehouse_good">
+          <End Role="good" Type="Self.good" Multiplicity="*" />
+          <End Role="warehouse" Type="Self.warehouse" Multiplicity="*" />
+        </Association>
+        <EntityContainer Name="HREntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="customers" EntityType="Self.customer" />
+          <EntitySet Name="factors" EntityType="Self.factor" />
+          <EntitySet Name="goods" EntityType="Self.good" />
+          <EntitySet Name="units" EntityType="Self.unit" />
+          <EntitySet Name="warehouses" EntityType="Self.warehouse" />
+          <EntitySet Name="factor_item" EntityType="Self.factor_item" />
+          <AssociationSet Name="FK__customer_id" Association="Self.FK__customer_id">
+            <End Role="customer" EntitySet="customers" />
+            <End Role="customer1" EntitySet="customers" />
+          </AssociationSet>
+          <AssociationSet Name="FK__factor_id" Association="Self.FK__factor_id">
+            <End Role="factor" EntitySet="factors" />
+            <End Role="factor_item" EntitySet="factor_item" />
+          </AssociationSet>
+          <AssociationSet Name="FK__unit_id" Association="Self.FK__unit_id">
+            <End Role="unit" EntitySet="units" />
+            <End Role="good" EntitySet="goods" />
+          </AssociationSet>
+          <AssociationSet Name="warehouse_good" Association="Self.warehouse_good">
+            <End Role="good" EntitySet="goods" />
+            <End Role="warehouse" EntitySet="warehouses" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="HRModelStoreContainer" CdmEntityContainer="HREntities">
+          <EntitySetMapping Name="customers">
+            <EntityTypeMapping TypeName="HRModel.customer">
+              <MappingFragment StoreEntitySet="customer">
+                <ScalarProperty Name="customer_id" ColumnName="customer_id" />
+                <ScalarProperty Name="customer_name" ColumnName="customer_name" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="factors">
+            <EntityTypeMapping TypeName="HRModel.factor">
+              <MappingFragment StoreEntitySet="factor">
+                <ScalarProperty Name="factor_id" ColumnName="factor_id" />
+                <ScalarProperty Name="factor_date" ColumnName="factor_date" />
+                <ScalarProperty Name="factor_type" ColumnName="factor_type" />
+                <ScalarProperty Name="customer_id" ColumnName="customer_id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="goods">
+            <EntityTypeMapping TypeName="HRModel.good">
+              <MappingFragment StoreEntitySet="good">
+                <ScalarProperty Name="good_id" ColumnName="good_id" />
+                <ScalarProperty Name="good_name" ColumnName="good_name" />
+                <ScalarProperty Name="unit_id" ColumnName="unit_id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="units">
+            <EntityTypeMapping TypeName="HRModel.unit">
+              <MappingFragment StoreEntitySet="unit">
+                <ScalarProperty Name="unit_id" ColumnName="unit_id" />
+                <ScalarProperty Name="unit_name" ColumnName="unit_name" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="warehouses">
+            <EntityTypeMapping TypeName="HRModel.warehouse">
+              <MappingFragment StoreEntitySet="warehouse">
+                <ScalarProperty Name="warehouse_id" ColumnName="warehouse_id" />
+                <ScalarProperty Name="warehouse_name" ColumnName="warehouse_name" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="factor_item">
+            <EntityTypeMapping TypeName="HRModel.factor_item">
+              <MappingFragment StoreEntitySet="factor_item">
+                <ScalarProperty Name="factor_id" ColumnName="factor_id" />
+                <ScalarProperty Name="warehouse_id" ColumnName="warehouse_id" />
+                <ScalarProperty Name="good_id" ColumnName="good_id" />
+                <ScalarProperty Name="good_number" ColumnName="good_number" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <AssociationSetMapping Name="warehouse_good" TypeName="HRModel.warehouse_good" StoreEntitySet="warehouse_good">
+            <EndProperty Name="good">
+              <ScalarProperty Name="good_id" ColumnName="good_id" />
+            </EndProperty>
+            <EndProperty Name="warehouse">
+              <ScalarProperty Name="warehouse_id" ColumnName="warehouse_id" />
+            </EndProperty>
+          </AssociationSetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="true" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>

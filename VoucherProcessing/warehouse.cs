@@ -12,20 +12,18 @@ namespace VoucherProcessing
     using System;
     using System.Collections.Generic;
     
-    public partial class factor
+    public partial class warehouse
     {
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
-        public factor()
+        public warehouse()
         {
-            this.factor_item = new HashSet<factor_item>();
+            this.goods = new HashSet<good>();
         }
     
-        public long factor_id { get; set; }
-        public System.DateTime factor_date { get; set; }
-        public string factor_type { get; set; }
-        public long customer_id { get; set; }
+        public long warehouse_id { get; set; }
+        public string warehouse_name { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<factor_item> factor_item { get; set; }
+        public virtual ICollection<good> goods { get; set; }
     }
 }
