@@ -13,10 +13,10 @@ namespace StoreManagement.Model
     using System.Data.Entity;
     using System.Data.Entity.Infrastructure;
     
-    public partial class HREntities : DbContext
+    public partial class HREntitiesStore : DbContext
     {
-        public HREntities()
-            : base("name=HREntities")
+        public HREntitiesStore()
+            : base("name=HREntitiesStore")
         {
         }
     

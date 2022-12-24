@@ -89,7 +89,7 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <EntityContainer Name="HREntities" annotation:LazyLoadingEnabled="true">
+        <EntityContainer Name="HREntitiesStore" annotation:LazyLoadingEnabled="true">
           <EntitySet Name="goods" EntityType="Self.good" />
           <EntitySet Name="units" EntityType="Self.unit" />
           <EntitySet Name="warehouses" EntityType="Self.warehouse" />
@@ -103,7 +103,7 @@
     <!-- C-S mapping content -->
     <edmx:Mappings>
       <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
-        <EntityContainerMapping StorageEntityContainer="HRModelStoreContainer" CdmEntityContainer="HREntities">
+        <EntityContainerMapping StorageEntityContainer="HRModelStoreContainer" CdmEntityContainer="HREntitiesStore">
           <EntitySetMapping Name="goods">
             <EntityTypeMapping TypeName="HRModel.good">
               <MappingFragment StoreEntitySet="good">

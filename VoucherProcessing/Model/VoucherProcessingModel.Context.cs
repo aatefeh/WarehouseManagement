@@ -13,10 +13,10 @@ namespace VoucherProcessing.Model
     using System.Data.Entity;
     using System.Data.Entity.Infrastructure;
     
-    public partial class HREntities1 : DbContext
+    public partial class HREntitiesVocher : DbContext
     {
-        public HREntities1()
-            : base("name=HREntities1")
+        public HREntitiesVocher()
+            : base("name=HREntitiesVocher")
         {
         }
     

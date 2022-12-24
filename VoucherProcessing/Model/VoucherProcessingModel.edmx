@@ -4,7 +4,7 @@
   <edmx:Runtime>
     <!-- SSDL content -->
     <edmx:StorageModels>
-      <Schema Namespace="HRModel1.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+      <Schema Namespace="HRModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
         <EntityType Name="factor">
           <Key>
             <PropertyRef Name="factor_id" />
@@ -40,7 +40,7 @@ warning 6002: The table/view 'HR.dbo.factor_item' does not have a primary key de
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <EntityContainer Name="HRModel1StoreContainer">
+        <EntityContainer Name="HRModelStoreContainer">
           <EntitySet Name="factor" EntityType="Self.factor" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="factor_item" EntityType="Self.factor_item" store:Type="Tables" store:Schema="dbo">
             <DefiningQuery>SELECT 
@@ -59,7 +59,7 @@ warning 6002: The table/view 'HR.dbo.factor_item' does not have a primary key de
     </edmx:StorageModels>
     <!-- CSDL content -->
     <edmx:ConceptualModels>
-      <Schema Namespace="HRModel1" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+      <Schema Namespace="HRModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
         <EntityType Name="factor">
           <Key>
             <PropertyRef Name="factor_id" />
@@ -95,7 +95,7 @@ warning 6002: The table/view 'HR.dbo.factor_item' does not have a primary key de
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <EntityContainer Name="HREntities1" annotation:LazyLoadingEnabled="true">
+        <EntityContainer Name="HREntitiesVocher" annotation:LazyLoadingEnabled="true">
           <EntitySet Name="factors" EntityType="Self.factor" />
           <EntitySet Name="factor_item" EntityType="Self.factor_item" />
           <AssociationSet Name="FK__factor_id" Association="Self.FK__factor_id">
@@ -108,9 +108,9 @@ warning 6002: The table/view 'HR.dbo.factor_item' does not have a primary key de
     <!-- C-S mapping content -->
     <edmx:Mappings>
       <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
-        <EntityContainerMapping StorageEntityContainer="HRModel1StoreContainer" CdmEntityContainer="HREntities1">
+        <EntityContainerMapping StorageEntityContainer="HRModelStoreContainer" CdmEntityContainer="HREntitiesVocher">
           <EntitySetMapping Name="factors">
-            <EntityTypeMapping TypeName="HRModel1.factor">
+            <EntityTypeMapping TypeName="HRModel.factor">
               <MappingFragment StoreEntitySet="factor">
                 <ScalarProperty Name="factor_id" ColumnName="factor_id" />
                 <ScalarProperty Name="factor_date" ColumnName="factor_date" />
@@ -120,7 +120,7 @@ warning 6002: The table/view 'HR.dbo.factor_item' does not have a primary key de
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="factor_item">
-            <EntityTypeMapping TypeName="HRModel1.factor_item">
+            <EntityTypeMapping TypeName="HRModel.factor_item">
               <MappingFragment StoreEntitySet="factor_item">
                 <ScalarProperty Name="factor_id" ColumnName="factor_id" />
                 <ScalarProperty Name="warehouse_id" ColumnName="warehouse_id" />
