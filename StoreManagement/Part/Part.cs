@@ -26,7 +26,7 @@ namespace StoreManagement
             return command;
         }
 
-        public string SaveAction()
+        public string Save()
         {
             string command = "UPDATE good SET good_id=@good_id,good_name=@good_name,unit_id=@unit_id";
             return command;

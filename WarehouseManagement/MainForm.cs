@@ -104,7 +104,7 @@ namespace WarehouseManagement
                 if (implType == LastClickeTable)
                 {
                     var dataProvider = (IDataProvider)Activator.CreateInstance(implType);
-                    string commandsave = (string)dataProvider.SaveAction();
+                    string commandsave = (string)dataProvider.Save();
                     SqlDataAdapter dataAdapter = new SqlDataAdapter(commandsave, con);
                     SqlCommandBuilder sqlCB = new SqlCommandBuilder(da);
                     da.Update(ds, "Table");

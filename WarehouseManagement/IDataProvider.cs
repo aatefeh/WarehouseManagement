@@ -12,7 +12,7 @@ namespace WarehouseManagement
         int Order { get; }
         string ButtonText { get; }
         string GetData();
-        string SaveAction();
+        string Save();
 
     }
 }

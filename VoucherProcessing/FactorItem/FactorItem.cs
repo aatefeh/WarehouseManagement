@@ -5,19 +5,19 @@ using System.Text;
 using System.Threading.Tasks;
 using WarehouseManagement;
 
-namespace VoucherProcessing.Factor
+namespace VoucherProcessing.Factoritem
 {
-    public class Factor : IEntity
+    public class Factoritem : IEntity
     {
         public int Id { get; set; }
         public string Name { get; set; }
     }
 
-    public class FactorProvider : IDataProvider
+    public class FactorItemProvider : IDataProvider
     {
-        public int Order => 4;
+        public int Order => 5;
 
-        public string ButtonText => "فاکتور";
+        public string ButtonText => "آیتم های فاکتور";
 
         public string GetData()
         {
@@ -27,7 +27,7 @@ namespace VoucherProcessing.Factor
 
             //    context.SaveChanges();
             ////}
-            string command = "select * from factor";
+            string command = "select * from factor_Item";
             return command;
         }
 
@@ -37,4 +37,5 @@ namespace VoucherProcessing.Factor
             return command;
         }
     }
+}
 }
