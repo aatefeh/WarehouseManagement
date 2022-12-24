@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using VoucherProcessing.Model;
 using WarehouseManagement;
 
 namespace VoucherProcessing.Factor
@@ -19,17 +20,13 @@ namespace VoucherProcessing.Factor
 
         public string ButtonText => "فاکتور";
 
-        public string GetData()
+        public IReadOnlyCollection<IEntity> GetData()
         {
-            using(var context = new HREntitiesVocher())
-            //using (var context = new HREntities())
-                //{
-                //    context.factors.Add(); 
-
-                //    context.SaveChanges();
-                ////}
-                string command = "select * from factor";
-            return command;
+            using (var context = new HREntitiesVoucher())
+            {
+                var allFactor = context.factors.Select(x => x).ToList();
+                return (IReadOnlyCollection<IEntity>)allFactor;
+            }
         }
 
         public string Save()

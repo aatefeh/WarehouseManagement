@@ -53,25 +53,25 @@
     <Compile Include="FactorItem\FactorItem.cs" />
     <Compile Include="Factor\Factor.cs" />
     <Compile Include="Model\factor.cs">
-      <DependentUpon>VoucherProcessingModel.tt</DependentUpon>
+      <DependentUpon>ModelVoucher.tt</DependentUpon>
     </Compile>
     <Compile Include="Model\factor_item.cs">
-      <DependentUpon>VoucherProcessingModel.tt</DependentUpon>
+      <DependentUpon>ModelVoucher.tt</DependentUpon>
     </Compile>
-    <Compile Include="Model\VoucherProcessingModel.Context.cs">
+    <Compile Include="Model\ModelVoucher.Context.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
-      <DependentUpon>VoucherProcessingModel.Context.tt</DependentUpon>
+      <DependentUpon>ModelVoucher.Context.tt</DependentUpon>
     </Compile>
-    <Compile Include="Model\VoucherProcessingModel.cs">
+    <Compile Include="Model\ModelVoucher.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
-      <DependentUpon>VoucherProcessingModel.tt</DependentUpon>
+      <DependentUpon>ModelVoucher.tt</DependentUpon>
     </Compile>
-    <Compile Include="Model\VoucherProcessingModel.Designer.cs">
+    <Compile Include="Model\ModelVoucher.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
-      <DependentUpon>VoucherProcessingModel.edmx</DependentUpon>
+      <DependentUpon>ModelVoucher.edmx</DependentUpon>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
@@ -88,29 +88,30 @@
   <ItemGroup>
     <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
   </ItemGroup>
+  <ItemGroup />
   <ItemGroup>
-    <EntityDeploy Include="Model\VoucherProcessingModel.edmx">
+    <EntityDeploy Include="Model\ModelVoucher.edmx">
       <Generator>EntityModelCodeGenerator</Generator>
-      <LastGenOutput>VoucherProcessingModel.Designer.cs</LastGenOutput>
+      <LastGenOutput>ModelVoucher.Designer.cs</LastGenOutput>
     </EntityDeploy>
   </ItemGroup>
   <ItemGroup>
     <None Include="App.Config" />
-    <None Include="Model\VoucherProcessingModel.edmx.diagram">
-      <DependentUpon>VoucherProcessingModel.edmx</DependentUpon>
+    <None Include="Model\ModelVoucher.edmx.diagram">
+      <DependentUpon>ModelVoucher.edmx</DependentUpon>
     </None>
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="Model\VoucherProcessingModel.Context.tt">
+    <Content Include="Model\ModelVoucher.Context.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
-      <LastGenOutput>VoucherProcessingModel.Context.cs</LastGenOutput>
-      <DependentUpon>VoucherProcessingModel.edmx</DependentUpon>
+      <LastGenOutput>ModelVoucher.Context.cs</LastGenOutput>
+      <DependentUpon>ModelVoucher.edmx</DependentUpon>
     </Content>
-    <Content Include="Model\VoucherProcessingModel.tt">
+    <Content Include="Model\ModelVoucher.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
-      <DependentUpon>VoucherProcessingModel.edmx</DependentUpon>
-      <LastGenOutput>VoucherProcessingModel.cs</LastGenOutput>
+      <DependentUpon>ModelVoucher.edmx</DependentUpon>
+      <LastGenOutput>ModelVoucher.cs</LastGenOutput>
     </Content>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

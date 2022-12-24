@@ -82,12 +82,8 @@ namespace WarehouseManagement
                             LastClickeTable = clicked.Value;
                             var dataProvider = (IDataProvider)Activator.CreateInstance(implType);
                             con.Open();
-                            string command=(string)dataProvider.GetData();
-                            da = new SqlDataAdapter(command, con);
-                            ds = new DataSet();
-                            da.Fill(ds,"Table");
-                            dataGridView1.DataSource = ds;
-                            dataGridView1.DataMember= "Table";
+                            var entities=dataProvider.GetData();
+                            dataGridView1.DataSource = entities;
                             con.Close();
                             break;
                         }

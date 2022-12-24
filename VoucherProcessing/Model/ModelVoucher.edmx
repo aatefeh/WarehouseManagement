@@ -95,7 +95,7 @@ warning 6002: The table/view 'HR.dbo.factor_item' does not have a primary key de
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <EntityContainer Name="HREntitiesVocher" annotation:LazyLoadingEnabled="true">
+        <EntityContainer Name="HREntitiesVoucher" annotation:LazyLoadingEnabled="true">
           <EntitySet Name="factors" EntityType="Self.factor" />
           <EntitySet Name="factor_item" EntityType="Self.factor_item" />
           <AssociationSet Name="FK__factor_id" Association="Self.FK__factor_id">
@@ -108,7 +108,7 @@ warning 6002: The table/view 'HR.dbo.factor_item' does not have a primary key de
     <!-- C-S mapping content -->
     <edmx:Mappings>
       <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
-        <EntityContainerMapping StorageEntityContainer="HRModelStoreContainer" CdmEntityContainer="HREntitiesVocher">
+        <EntityContainerMapping StorageEntityContainer="HRModelStoreContainer" CdmEntityContainer="HREntitiesVoucher">
           <EntitySetMapping Name="factors">
             <EntityTypeMapping TypeName="HRModel.factor">
               <MappingFragment StoreEntitySet="factor">

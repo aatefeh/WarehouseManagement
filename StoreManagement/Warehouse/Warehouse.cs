@@ -1,4 +1,5 @@
-﻿using System;
+﻿using StoreManagement.Model;
+using System;
 using System.Collections.Generic;
 using System.Data;
 using System.Linq;
@@ -20,10 +21,13 @@ namespace StoreManagement
 
         public string ButtonText => "انبار";
 
-        public string GetData()
+        public IReadOnlyCollection<IEntity> GetData()
         {
-            string command = "select * from warehouse";
-            return command;
+            using (var context = new HREntitiesStore())
+            {
+                var allWarehouse = context.warehouses.Select(x => x).ToList();
+                return (IReadOnlyCollection<IEntity>)allWarehouse;
+            }
         }
 
         public string Save()

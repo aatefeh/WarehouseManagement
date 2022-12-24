@@ -51,28 +51,28 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Model\good.cs">
-      <DependentUpon>StoreManagementModel.tt</DependentUpon>
+      <DependentUpon>ModelStore.tt</DependentUpon>
     </Compile>
-    <Compile Include="Model\StoreManagementModel.Context.cs">
+    <Compile Include="Model\ModelStore.Context.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
-      <DependentUpon>StoreManagementModel.Context.tt</DependentUpon>
+      <DependentUpon>ModelStore.Context.tt</DependentUpon>
     </Compile>
-    <Compile Include="Model\StoreManagementModel.cs">
+    <Compile Include="Model\ModelStore.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
-      <DependentUpon>StoreManagementModel.tt</DependentUpon>
+      <DependentUpon>ModelStore.tt</DependentUpon>
     </Compile>
-    <Compile Include="Model\StoreManagementModel.Designer.cs">
+    <Compile Include="Model\ModelStore.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
-      <DependentUpon>StoreManagementModel.edmx</DependentUpon>
+      <DependentUpon>ModelStore.edmx</DependentUpon>
     </Compile>
     <Compile Include="Model\unit.cs">
-      <DependentUpon>StoreManagementModel.tt</DependentUpon>
+      <DependentUpon>ModelStore.tt</DependentUpon>
     </Compile>
     <Compile Include="Model\warehouse.cs">
-      <DependentUpon>StoreManagementModel.tt</DependentUpon>
+      <DependentUpon>ModelStore.tt</DependentUpon>
     </Compile>
     <Compile Include="Part\Part.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -86,32 +86,32 @@
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
-    <EntityDeploy Include="Model\StoreManagementModel.edmx">
+    <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
+  </ItemGroup>
+  <ItemGroup>
+    <EntityDeploy Include="Model\ModelStore.edmx">
       <Generator>EntityModelCodeGenerator</Generator>
-      <LastGenOutput>StoreManagementModel.Designer.cs</LastGenOutput>
+      <LastGenOutput>ModelStore.Designer.cs</LastGenOutput>
     </EntityDeploy>
   </ItemGroup>
   <ItemGroup>
     <None Include="App.Config" />
-    <None Include="Model\StoreManagementModel.edmx.diagram">
-      <DependentUpon>StoreManagementModel.edmx</DependentUpon>
+    <None Include="Model\ModelStore.edmx.diagram">
+      <DependentUpon>ModelStore.edmx</DependentUpon>
     </None>
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="Model\StoreManagementModel.Context.tt">
+    <Content Include="Model\ModelStore.Context.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
-      <LastGenOutput>StoreManagementModel.Context.cs</LastGenOutput>
-      <DependentUpon>StoreManagementModel.edmx</DependentUpon>
+      <LastGenOutput>ModelStore.Context.cs</LastGenOutput>
+      <DependentUpon>ModelStore.edmx</DependentUpon>
     </Content>
-    <Content Include="Model\StoreManagementModel.tt">
+    <Content Include="Model\ModelStore.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
-      <DependentUpon>StoreManagementModel.edmx</DependentUpon>
-      <LastGenOutput>StoreManagementModel.cs</LastGenOutput>
+      <DependentUpon>ModelStore.edmx</DependentUpon>
+      <LastGenOutput>ModelStore.cs</LastGenOutput>
     </Content>
-  </ItemGroup>
-  <ItemGroup>
-    <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

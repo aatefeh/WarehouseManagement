@@ -1,4 +1,5 @@
-﻿using System;
+﻿using StoreManagement.Model;
+using System;
 using System.Collections.Generic;
 using System.Data;
 using System.Linq;
@@ -20,10 +21,13 @@ namespace StoreManagement
 
         public string ButtonText => "واحد سنجش";
 
-        public string GetData()
+        public IReadOnlyCollection<IEntity> GetData()
         {
-            string command = "select * from unit";
-            return command;
+            using (var context = new HREntitiesStore())
+            {
+                var allUnit = context.units.Select(x => x).ToList();
+                return (IReadOnlyCollection<IEntity>)allUnit;
+            }
         }
 
         public string Save()
