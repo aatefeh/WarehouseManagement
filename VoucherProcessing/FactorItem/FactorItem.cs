@@ -20,12 +20,12 @@ namespace VoucherProcessing.Factoritem
 
         public string ButtonText => "آیتم های فاکتور";
 
-        public IReadOnlyCollection<IEntity> GetData()
+        public IEnumerable<IEntity> GetData()
         {
             using (var context = new HREntitiesVoucher())
             {
-                var allFactorItem = context.factor_item.Select(x => x).ToList();
-                return (IReadOnlyCollection<IEntity>)allFactorItem;
+                var allFactorItem = context.factor_item.ToList();
+                return (IEnumerable<IEntity>)allFactorItem;
             }
         }
 

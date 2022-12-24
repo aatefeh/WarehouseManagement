@@ -11,7 +11,7 @@ namespace WarehouseManagement
     {
         int Order { get; }
         string ButtonText { get; }
-        IReadOnlyCollection<IEntity> GetData();
+        IEnumerable<IEntity> GetData();
         string Save();
 
     }

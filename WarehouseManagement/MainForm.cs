@@ -19,10 +19,9 @@ namespace WarehouseManagement
     {
         private Dictionary<int,Type> ButtonWasClicked = new Dictionary<int, Type>();
         private int i = 0;
-        SqlConnection con = new SqlConnection("Data Source=DESKTOP-D26MECS;Initial Catalog=HR;Integrated Security=True");
-        SqlDataAdapter da;
-        DataSet ds;
         private Type LastClickeTable;
+
+     
         public MainForm()
         {
             InitializeComponent();
@@ -81,10 +80,8 @@ namespace WarehouseManagement
                         {
                             LastClickeTable = clicked.Value;
                             var dataProvider = (IDataProvider)Activator.CreateInstance(implType);
-                            con.Open();
                             var entities=dataProvider.GetData();
                             dataGridView1.DataSource = entities;
-                            con.Close();
                             break;
                         }
                     }
@@ -100,10 +97,7 @@ namespace WarehouseManagement
                 if (implType == LastClickeTable)
                 {
                     var dataProvider = (IDataProvider)Activator.CreateInstance(implType);
-                    string commandsave = (string)dataProvider.Save();
-                    SqlDataAdapter dataAdapter = new SqlDataAdapter(commandsave, con);
-                    SqlCommandBuilder sqlCB = new SqlCommandBuilder(da);
-                    da.Update(ds, "Table");
+                    var entities = dataProvider.Save();
                     break;
                 }
             }

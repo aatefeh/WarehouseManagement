@@ -21,12 +21,12 @@ namespace StoreManagement
 
         public string ButtonText => "واحد سنجش";
 
-        public IReadOnlyCollection<IEntity> GetData()
+        public IEnumerable<IEntity> GetData()
         {
             using (var context = new HREntitiesStore())
             {
-                var allUnit = context.units.Select(x => x).ToList();
-                return (IReadOnlyCollection<IEntity>)allUnit;
+                var allUnit = context.units.ToList();
+                return (IEnumerable<IEntity>)allUnit;
             }
         }
 

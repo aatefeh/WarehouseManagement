@@ -21,12 +21,12 @@ namespace StoreManagement
 
         public string ButtonText => "کالا";
 
-        public IReadOnlyCollection<IEntity> GetData()
+        public IEnumerable<IEntity> GetData()
         {
             using (var context = new HREntitiesStore())
             {
-                var allPart = context.goods.Select(x => x).ToList();
-                return (IReadOnlyCollection<IEntity>)allPart;
+                var allPart = context.goods.ToList();
+                return (IEnumerable<IEntity>)allPart;
             }
         }
 
