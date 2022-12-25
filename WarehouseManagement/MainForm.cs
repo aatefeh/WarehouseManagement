@@ -80,8 +80,15 @@ namespace WarehouseManagement
                         {
                             LastClickeTable = clicked.Value;
                             var dataProvider = (IDataProvider)Activator.CreateInstance(implType);
-                            var entities=dataProvider.GetData();
-                            dataGridView1.DataSource = entities;
+                            var entities = dataProvider.GetData();
+                            var psource = new BindingSource();
+                            psource.DataSource= 
+                            //foreach (var entity in entities)
+                            //{
+                            //    fowlist.Add(entity);
+                            //}
+                            dataGridView1.DataSource = psource;
+                           
                             break;
                         }
                     }

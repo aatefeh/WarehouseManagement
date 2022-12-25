@@ -25,7 +25,7 @@ namespace VoucherProcessing.Model
             throw new UnintentionalCodeFirstException();
         }
     
-        public virtual DbSet<factor> factors { get; set; }
-        public virtual DbSet<factor_item> factor_item { get; set; }
+        public virtual DbSet<Factor> factors { get; set; }
+        public virtual DbSet<Factor_item> factor_item { get; set; }
     }
 }

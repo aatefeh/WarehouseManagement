@@ -9,10 +9,8 @@ using WarehouseManagement;
 
 namespace StoreManagement
 {
-    public class Warehouse : IEntity
+    public partial class Warehouse : IEntity
     {
-        public int Id { get; set; }
-        public string Name { get; set; }
     }
 
     public class WarehouseProvider : IDataProvider

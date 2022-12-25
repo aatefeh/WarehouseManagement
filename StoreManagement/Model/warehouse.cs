@@ -12,9 +12,9 @@ namespace StoreManagement.Model
     using System;
     using System.Collections.Generic;
     
-    public partial class warehouse
+    public partial class Warehouse
     {
-        public long warehouse_id { get; set; }
+        public long ID { get; set; }
         public string warehouse_name { get; set; }
     }
 }

@@ -62,9 +62,9 @@ warning 6002: The table/view 'HR.dbo.factor_item' does not have a primary key de
       <Schema Namespace="HRModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
         <EntityType Name="factor">
           <Key>
-            <PropertyRef Name="factor_id" />
+            <PropertyRef Name="ID" />
           </Key>
-          <Property Name="factor_id" Type="Int64" Nullable="false" />
+          <Property Name="ID" Type="Int64" Nullable="false" />
           <Property Name="factor_date" Type="DateTime" Nullable="false" Precision="3" />
           <Property Name="factor_type" Type="String" MaxLength="10" FixedLength="false" Unicode="true" Nullable="false" />
           <Property Name="customer_id" Type="Int64" Nullable="false" />
@@ -72,12 +72,12 @@ warning 6002: The table/view 'HR.dbo.factor_item' does not have a primary key de
         </EntityType>
         <EntityType Name="factor_item">
           <Key>
-            <PropertyRef Name="factor_id" />
+            <PropertyRef Name="ID" />
             <PropertyRef Name="warehouse_id" />
             <PropertyRef Name="good_id" />
             <PropertyRef Name="good_number" />
           </Key>
-          <Property Name="factor_id" Type="Int64" Nullable="false" />
+          <Property Name="ID" Type="Int64" Nullable="false" />
           <Property Name="warehouse_id" Type="Int64" Nullable="false" />
           <Property Name="good_id" Type="Int64" Nullable="false" />
           <Property Name="good_number" Type="Int64" Nullable="false" />
@@ -88,10 +88,10 @@ warning 6002: The table/view 'HR.dbo.factor_item' does not have a primary key de
           <End Role="factor_item" Type="Self.factor_item" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="factor">
-              <PropertyRef Name="factor_id" />
+              <PropertyRef Name="ID" />
             </Principal>
             <Dependent Role="factor_item">
-              <PropertyRef Name="factor_id" />
+              <PropertyRef Name="ID" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -112,7 +112,7 @@ warning 6002: The table/view 'HR.dbo.factor_item' does not have a primary key de
           <EntitySetMapping Name="factors">
             <EntityTypeMapping TypeName="HRModel.factor">
               <MappingFragment StoreEntitySet="factor">
-                <ScalarProperty Name="factor_id" ColumnName="factor_id" />
+                <ScalarProperty Name="ID" ColumnName="factor_id" />
                 <ScalarProperty Name="factor_date" ColumnName="factor_date" />
                 <ScalarProperty Name="factor_type" ColumnName="factor_type" />
                 <ScalarProperty Name="customer_id" ColumnName="customer_id" />
@@ -122,7 +122,7 @@ warning 6002: The table/view 'HR.dbo.factor_item' does not have a primary key de
           <EntitySetMapping Name="factor_item">
             <EntityTypeMapping TypeName="HRModel.factor_item">
               <MappingFragment StoreEntitySet="factor_item">
-                <ScalarProperty Name="factor_id" ColumnName="factor_id" />
+                <ScalarProperty Name="ID" ColumnName="factor_id" />
                 <ScalarProperty Name="warehouse_id" ColumnName="warehouse_id" />
                 <ScalarProperty Name="good_id" ColumnName="good_id" />
                 <ScalarProperty Name="good_number" ColumnName="good_number" />

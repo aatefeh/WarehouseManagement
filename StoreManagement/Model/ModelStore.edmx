@@ -55,26 +55,26 @@
       <Schema Namespace="HRModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
         <EntityType Name="good">
           <Key>
-            <PropertyRef Name="good_id" />
+            <PropertyRef Name="ID" />
           </Key>
-          <Property Name="good_id" Type="Int64" Nullable="false" />
+          <Property Name="ID" Type="Int64" Nullable="false" />
           <Property Name="good_name" Type="String" MaxLength="100" FixedLength="false" Unicode="true" Nullable="false" />
           <Property Name="unit_id" Type="Int64" Nullable="false" />
           <NavigationProperty Name="unit" Relationship="Self.FK__unit_id" FromRole="good" ToRole="unit" />
         </EntityType>
         <EntityType Name="unit">
           <Key>
-            <PropertyRef Name="unit_id" />
+            <PropertyRef Name="ID" />
           </Key>
-          <Property Name="unit_id" Type="Int64" Nullable="false" />
+          <Property Name="ID" Type="Int64" Nullable="false" />
           <Property Name="unit_name" Type="String" MaxLength="100" FixedLength="false" Unicode="true" Nullable="false" />
           <NavigationProperty Name="goods" Relationship="Self.FK__unit_id" FromRole="unit" ToRole="good" />
         </EntityType>
         <EntityType Name="warehouse">
           <Key>
-            <PropertyRef Name="warehouse_id" />
+            <PropertyRef Name="ID" />
           </Key>
-          <Property Name="warehouse_id" Type="Int64" Nullable="false" />
+          <Property Name="ID" Type="Int64" Nullable="false" />
           <Property Name="warehouse_name" Type="String" MaxLength="100" FixedLength="false" Unicode="true" Nullable="false" />
         </EntityType>
         <Association Name="FK__unit_id">
@@ -82,7 +82,7 @@
           <End Role="good" Type="Self.good" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="unit">
-              <PropertyRef Name="unit_id" />
+              <PropertyRef Name="ID" />
             </Principal>
             <Dependent Role="good">
               <PropertyRef Name="unit_id" />
@@ -107,7 +107,7 @@
           <EntitySetMapping Name="goods">
             <EntityTypeMapping TypeName="HRModel.good">
               <MappingFragment StoreEntitySet="good">
-                <ScalarProperty Name="good_id" ColumnName="good_id" />
+                <ScalarProperty Name="ID" ColumnName="good_id" />
                 <ScalarProperty Name="good_name" ColumnName="good_name" />
                 <ScalarProperty Name="unit_id" ColumnName="unit_id" />
               </MappingFragment>
@@ -116,7 +116,7 @@
           <EntitySetMapping Name="units">
             <EntityTypeMapping TypeName="HRModel.unit">
               <MappingFragment StoreEntitySet="unit">
-                <ScalarProperty Name="unit_id" ColumnName="unit_id" />
+                <ScalarProperty Name="ID" ColumnName="unit_id" />
                 <ScalarProperty Name="unit_name" ColumnName="unit_name" />
               </MappingFragment>
             </EntityTypeMapping>
@@ -124,7 +124,7 @@
           <EntitySetMapping Name="warehouses">
             <EntityTypeMapping TypeName="HRModel.warehouse">
               <MappingFragment StoreEntitySet="warehouse">
-                <ScalarProperty Name="warehouse_id" ColumnName="warehouse_id" />
+                <ScalarProperty Name="ID" ColumnName="warehouse_id" />
                 <ScalarProperty Name="warehouse_name" ColumnName="warehouse_name" />
               </MappingFragment>
             </EntityTypeMapping>

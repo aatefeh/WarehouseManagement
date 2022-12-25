@@ -12,20 +12,20 @@ namespace VoucherProcessing.Model
     using System;
     using System.Collections.Generic;
     
-    public partial class factor
+    public partial class Factor
     {
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
-        public factor()
+        public Factor()
         {
-            this.factor_item = new HashSet<factor_item>();
+            this.factor_item = new HashSet<Factor_item>();
         }
     
-        public long factor_id { get; set; }
+        public long ID { get; set; }
         public System.DateTime factor_date { get; set; }
         public string factor_type { get; set; }
         public long customer_id { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<factor_item> factor_item { get; set; }
+        public virtual ICollection<Factor_item> factor_item { get; set; }
     }
 }

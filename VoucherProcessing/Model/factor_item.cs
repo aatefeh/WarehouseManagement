@@ -12,13 +12,13 @@ namespace VoucherProcessing.Model
     using System;
     using System.Collections.Generic;
     
-    public partial class factor_item
+    public partial class Factor_item
     {
-        public long factor_id { get; set; }
+        public long ID { get; set; }
         public long warehouse_id { get; set; }
         public long good_id { get; set; }
         public long good_number { get; set; }
     
-        public virtual factor factor { get; set; }
+        public virtual Factor factor { get; set; }
     }
 }

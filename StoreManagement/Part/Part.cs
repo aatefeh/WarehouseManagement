@@ -7,12 +7,10 @@ using System.Text;
 using System.Threading.Tasks;
 using WarehouseManagement;
 
-namespace StoreManagement
+namespace StoreManagement.Model
 {
-    public class Part : IEntity
+    public partial class Part : IEntity
     {
-        public int Id { get; set; }
-        public string Name { get; set; }
     }
 
     public class PartProvider : IDataProvider

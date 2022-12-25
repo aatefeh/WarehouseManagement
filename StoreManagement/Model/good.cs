@@ -12,12 +12,12 @@ namespace StoreManagement.Model
     using System;
     using System.Collections.Generic;
     
-    public partial class good
+    public partial class Part
     {
-        public long good_id { get; set; }
+        public long ID { get; set; }
         public string good_name { get; set; }
         public long unit_id { get; set; }
     
-        public virtual unit unit { get; set; }
+        public virtual UnitPart unit { get; set; }
     }
 }

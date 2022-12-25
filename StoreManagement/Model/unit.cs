@@ -12,18 +12,18 @@ namespace StoreManagement.Model
     using System;
     using System.Collections.Generic;
     
-    public partial class unit
+    public partial class UnitPart
     {
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
-        public unit()
+        public UnitPart()
         {
-            this.goods = new HashSet<good>();
+            this.goods = new HashSet<Part>();
         }
     
-        public long unit_id { get; set; }
+        public long ID { get; set; }
         public string unit_name { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<good> goods { get; set; }
+        public virtual ICollection<Part> goods { get; set; }
     }
 }

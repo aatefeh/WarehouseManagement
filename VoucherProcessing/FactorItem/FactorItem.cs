@@ -6,12 +6,10 @@ using System.Threading.Tasks;
 using VoucherProcessing.Model;
 using WarehouseManagement;
 
-namespace VoucherProcessing.Factoritem
+namespace VoucherProcessing.Model
 {
-    public class Factoritem : IEntity
+    public partial class Factor_item : IEntity
     {
-        public int Id { get; set; }
-        public string Name { get; set; }
     }
 
     public class FactorItemProvider : IDataProvider

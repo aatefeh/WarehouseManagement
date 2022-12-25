@@ -1,17 +1,20 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
+using System.ComponentModel;
+using System.ComponentModel.Design;
+using System.Data.Entity.Core.Objects.DataClasses;
 using System.Linq;
+using System.Runtime.InteropServices;
 using System.Text;
 using System.Threading.Tasks;
 using VoucherProcessing.Model;
 using WarehouseManagement;
 
-namespace VoucherProcessing.Factor
+namespace VoucherProcessing.Model
 {
-    public class Factor : IEntity
+    public partial class Factor : IEntity
     {
-        public int Id { get; set; }
-        public string Name { get; set; }
     }
 
     public class FactorProvider : IDataProvider
@@ -22,17 +25,25 @@ namespace VoucherProcessing.Factor
 
         public IEnumerable<IEntity> GetData()
         {
-            using (var context = new HREntitiesVoucher())
+
+            using (var Context = new HREntitiesVoucher())
             {
-                var allFactor = context.factors.ToList();
-                return (IEnumerable<IEntity>)allFactor;
+                var allFactors = Context.factors.ToList();
+                //var list = new List<factor>();
+                //foreach (var factor in allFactors)
+                //{
+                //    list.Add(factor);
+                //}
+                return (IEnumerable<IEntity>)allFactors;
             }
         }
 
         public string Save()
         {
-            string command = "UPDATE factor SET factor_id=@factor_id,factor_date=@factor_date,factor_type=@factor_type,customer_id=@customer_id";
-            return command;
+            string a = "dsssd";
+            return a;
+        //    var changes = dbContext.GetChangeSet();
+        //    dbContext.SubmitChanges();
         }
     }
 }
