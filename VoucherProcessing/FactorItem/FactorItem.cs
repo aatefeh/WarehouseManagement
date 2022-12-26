@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -8,7 +9,7 @@ using WarehouseManagement;
 
 namespace VoucherProcessing.Model
 {
-    public partial class Factor_item : IEntity
+    public partial class FactorItem : IEntity
     {
     }
 
@@ -16,21 +17,19 @@ namespace VoucherProcessing.Model
     {
         public int Order => 5;
 
-        public string ButtonText => "آیتم های فاکتور";
+        public string ButtonText => "آیتم فاکتور";
 
-        public IEnumerable<IEntity> GetData()
+        public IList GetData()
         {
             using (var context = new HREntitiesVoucher())
             {
-                var allFactorItem = context.factor_item.ToList();
-                return (IEnumerable<IEntity>)allFactorItem;
+                var allFactorItems = context.FactorItems.ToList();
+                return allFactorItems;
             }
         }
 
-        public string Save()
+        public void Save(IEnumerable<IEntity> List)
         {
-            string command = "UPDATE factor SET factor_id=@factor_id,factor_date=@factor_date,factor_type=@factor_type,customer_id=@customer_id";
-            return command;
         }
     }
 }

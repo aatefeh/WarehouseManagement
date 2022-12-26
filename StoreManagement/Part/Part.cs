@@ -1,8 +1,12 @@
 ﻿using StoreManagement.Model;
 using System;
+using System.Collections;
 using System.Collections.Generic;
+using System.ComponentModel.Design;
 using System.Data;
+using System.Data.Entity;
 using System.Linq;
+using System.Runtime.Remoting.Contexts;
 using System.Text;
 using System.Threading.Tasks;
 using WarehouseManagement;
@@ -19,19 +23,20 @@ namespace StoreManagement.Model
 
         public string ButtonText => "کالا";
 
-        public IEnumerable<IEntity> GetData()
+        public IList GetData()
         {
             using (var context = new HREntitiesStore())
             {
-                var allPart = context.goods.ToList();
-                return (IEnumerable<IEntity>)allPart;
+                var partsQuery = (from part_item in context.Parts
+                                  join unit_item in context.UnitParts on part_item.unit_id equals unit_item.ID
+                                  select new { Id = part_item.ID, Name = part_item.part_name, UnitId = part_item.unit_id }).ToList();
+                return partsQuery;
             }
         }
 
-        public string Save()
+        public void Save(IEnumerable<IEntity> List)
         {
-            string command = "UPDATE good SET good_id=@good_id,good_name=@good_name,unit_id=@unit_id";
-            return command;
+
         }
     }
 }

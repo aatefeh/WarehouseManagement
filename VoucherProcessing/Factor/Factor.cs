@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.ComponentModel;
@@ -8,6 +9,7 @@ using System.Linq;
 using System.Runtime.InteropServices;
 using System.Text;
 using System.Threading.Tasks;
+using System.Xml.Linq;
 using VoucherProcessing.Model;
 using WarehouseManagement;
 
@@ -23,27 +25,19 @@ namespace VoucherProcessing.Model
 
         public string ButtonText => "فاکتور";
 
-        public IEnumerable<IEntity> GetData()
+        public IList GetData()
         {
-
-            using (var Context = new HREntitiesVoucher())
+            using (var context = new HREntitiesVoucher())
             {
-                var allFactors = Context.factors.ToList();
-                //var list = new List<factor>();
-                //foreach (var factor in allFactors)
-                //{
-                //    list.Add(factor);
-                //}
-                return (IEnumerable<IEntity>)allFactors;
+                var factoreQuery = (from factor in context.Factors
+                                  join factor_item in context.FactorItems on factor.ID equals factor_item.ID
+                                  select new { Id = factor.ID, Date = factor.factor_date, Type=factor.factor_type,CoustomerId = factor.customer_id}).ToList();
+                return factoreQuery;
             }
         }
 
-        public string Save()
+        public void Save(IEnumerable<IEntity> List)
         {
-            string a = "dsssd";
-            return a;
-        //    var changes = dbContext.GetChangeSet();
-        //    dbContext.SubmitChanges();
         }
     }
 }

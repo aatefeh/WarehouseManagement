@@ -1,5 +1,6 @@
 ﻿using StoreManagement.Model;
 using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.Data;
 using System.Linq;
@@ -19,19 +20,19 @@ namespace StoreManagement.Model
 
         public string ButtonText => "واحد سنجش";
 
-        public IEnumerable<IEntity> GetData()
+        public IList GetData()
         {
             using (var context = new HREntitiesStore())
             {
-                var allUnit = context.units.ToList();
-                return (IEnumerable<IEntity>)allUnit;
+                var allUnitParts = (from unit_part in context.UnitParts
+                                   join part in context.Parts on unit_part.ID equals part.unit_id
+                                    select new { Id = unit_part.ID, Name = unit_part.unit_name }).ToList();
+                return allUnitParts;
             }
         }
 
-        public string Save()
+        public void Save(IEnumerable<IEntity> List)
         {
-            string command = "UPDATE unit SET unit_id=@unit_id,unit_name=@unit_name";
-            return command;
         }
     }
 }

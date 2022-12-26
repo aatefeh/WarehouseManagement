@@ -67,12 +67,12 @@ namespace WarehouseManagement
         private void Button_Click(object sender, EventArgs e)
         {
             System.Windows.Forms.Button btnsender = (System.Windows.Forms.Button)sender;
-            var d = (int)btnsender.Tag;
+            var senderTag = (int)btnsender.Tag;
             foreach (var clicked in ButtonWasClicked)
             {
-                if (clicked.Key == d)
+                if (clicked.Key == senderTag)
                 {
-                    dataGridView1.DataSource = null;
+                    MainDataGridView.DataSource = null;
                     var impls = GetAllAssembly();
                     foreach (var implType in impls)
                     {
@@ -80,15 +80,10 @@ namespace WarehouseManagement
                         {
                             LastClickeTable = clicked.Value;
                             var dataProvider = (IDataProvider)Activator.CreateInstance(implType);
+                            
+                            var DBTable = new DataTable();
                             var entities = dataProvider.GetData();
-                            var psource = new BindingSource();
-                            psource.DataSource= 
-                            //foreach (var entity in entities)
-                            //{
-                            //    fowlist.Add(entity);
-                            //}
-                            dataGridView1.DataSource = psource;
-                           
+                            MainDataGridView.DataSource = entities;
                             break;
                         }
                     }
@@ -104,11 +99,16 @@ namespace WarehouseManagement
                 if (implType == LastClickeTable)
                 {
                     var dataProvider = (IDataProvider)Activator.CreateInstance(implType);
-                    var entities = dataProvider.Save();
+                    //var entities = dataProvider.Save();
                     break;
                 }
             }
             //SqlDataAdapter dataAdapter=new SqlDataAdapter("select * from Table")
         }
+
+        private void dataGridView1_CellContentClick(object sender, DataGridViewCellEventArgs e)
+        {
+
         }
+    }
 }

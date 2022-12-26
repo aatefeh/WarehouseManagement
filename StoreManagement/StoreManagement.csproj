@@ -50,9 +50,6 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Model\good.cs">
-      <DependentUpon>ModelStore.tt</DependentUpon>
-    </Compile>
     <Compile Include="Model\ModelStore.Context.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
@@ -68,10 +65,13 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>ModelStore.edmx</DependentUpon>
     </Compile>
-    <Compile Include="Model\unit.cs">
+    <Compile Include="Model\Part.cs">
       <DependentUpon>ModelStore.tt</DependentUpon>
     </Compile>
-    <Compile Include="Model\warehouse.cs">
+    <Compile Include="Model\UnitPart.cs">
+      <DependentUpon>ModelStore.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Model\Warehouse.cs">
       <DependentUpon>ModelStore.tt</DependentUpon>
     </Compile>
     <Compile Include="Part\Part.cs" />
@@ -88,6 +88,7 @@
   <ItemGroup>
     <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
   </ItemGroup>
+  <ItemGroup />
   <ItemGroup>
     <EntityDeploy Include="Model\ModelStore.edmx">
       <Generator>EntityModelCodeGenerator</Generator>

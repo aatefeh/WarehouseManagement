@@ -1,5 +1,6 @@
 ﻿using StoreManagement.Model;
 using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.Data;
 using System.Linq;
@@ -19,19 +20,17 @@ namespace StoreManagement.Model
 
         public string ButtonText => "انبار";
 
-        public IEnumerable<IEntity> GetData()
+        public IList GetData()
         {
             using (var context = new HREntitiesStore())
             {
-                var allWarehouse = context.warehouses.ToList();
-                return (IEnumerable<IEntity>)allWarehouse;
+                var allWarehouses = context.Warehouses.ToList();
+                return allWarehouses;
             }
         }
 
-        public string Save()
+        public void Save(IEnumerable<IEntity> List)
         {
-            string command = "UPDATE warehouse SET warehouse_id=@warehouse_id,warehouse_name=@warehouse_name";
-            return command;
         }
     }
 }

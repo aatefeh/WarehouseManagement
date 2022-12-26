@@ -17,7 +17,7 @@ namespace VoucherProcessing.Model
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
         public Factor()
         {
-            this.factor_item = new HashSet<Factor_item>();
+            this.FactorItems = new HashSet<FactorItem>();
         }
     
         public long ID { get; set; }
@@ -26,6 +26,6 @@ namespace VoucherProcessing.Model
         public long customer_id { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<Factor_item> factor_item { get; set; }
+        public virtual ICollection<FactorItem> FactorItems { get; set; }
     }
 }

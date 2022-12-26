@@ -17,13 +17,13 @@ namespace StoreManagement.Model
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
         public UnitPart()
         {
-            this.goods = new HashSet<Part>();
+            this.Parts = new HashSet<Part>();
         }
     
         public long ID { get; set; }
         public string unit_name { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<Part> goods { get; set; }
+        public virtual ICollection<Part> Parts { get; set; }
     }
 }

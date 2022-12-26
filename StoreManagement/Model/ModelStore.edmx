@@ -5,22 +5,22 @@
     <!-- SSDL content -->
     <edmx:StorageModels>
       <Schema Namespace="HRModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
-        <EntityType Name="good">
+        <EntityType Name="Part">
           <Key>
-            <PropertyRef Name="good_id" />
+            <PropertyRef Name="part_id" />
           </Key>
-          <Property Name="good_id" Type="bigint" Nullable="false" />
-          <Property Name="good_name" Type="nvarchar" MaxLength="100" Nullable="false" />
+          <Property Name="part_id" Type="bigint" Nullable="false" />
+          <Property Name="part_name" Type="nvarchar" MaxLength="100" Nullable="false" />
           <Property Name="unit_id" Type="bigint" Nullable="false" />
         </EntityType>
-        <EntityType Name="unit">
+        <EntityType Name="UnitPart">
           <Key>
             <PropertyRef Name="unit_id" />
           </Key>
           <Property Name="unit_id" Type="bigint" Nullable="false" />
           <Property Name="unit_name" Type="nvarchar" MaxLength="100" Nullable="false" />
         </EntityType>
-        <EntityType Name="warehouse">
+        <EntityType Name="Warehouse">
           <Key>
             <PropertyRef Name="warehouse_id" />
           </Key>
@@ -28,24 +28,24 @@
           <Property Name="warehouse_name" Type="nvarchar" MaxLength="100" Nullable="false" />
         </EntityType>
         <Association Name="FK__unit_id">
-          <End Role="unit" Type="Self.unit" Multiplicity="1" />
-          <End Role="good" Type="Self.good" Multiplicity="*" />
+          <End Role="UnitPart" Type="Self.UnitPart" Multiplicity="1" />
+          <End Role="Part" Type="Self.Part" Multiplicity="*" />
           <ReferentialConstraint>
-            <Principal Role="unit">
+            <Principal Role="UnitPart">
               <PropertyRef Name="unit_id" />
             </Principal>
-            <Dependent Role="good">
+            <Dependent Role="Part">
               <PropertyRef Name="unit_id" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
         <EntityContainer Name="HRModelStoreContainer">
-          <EntitySet Name="good" EntityType="Self.good" Schema="dbo" store:Type="Tables" />
-          <EntitySet Name="unit" EntityType="Self.unit" Schema="dbo" store:Type="Tables" />
-          <EntitySet Name="warehouse" EntityType="Self.warehouse" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Part" EntityType="Self.Part" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="UnitPart" EntityType="Self.UnitPart" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Warehouse" EntityType="Self.Warehouse" Schema="dbo" store:Type="Tables" />
           <AssociationSet Name="FK__unit_id" Association="Self.FK__unit_id">
-            <End Role="unit" EntitySet="unit" />
-            <End Role="good" EntitySet="good" />
+            <End Role="UnitPart" EntitySet="UnitPart" />
+            <End Role="Part" EntitySet="Part" />
           </AssociationSet>
         </EntityContainer>
       </Schema>
@@ -53,24 +53,24 @@
     <!-- CSDL content -->
     <edmx:ConceptualModels>
       <Schema Namespace="HRModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
-        <EntityType Name="good">
+        <EntityType Name="Part">
           <Key>
             <PropertyRef Name="ID" />
           </Key>
           <Property Name="ID" Type="Int64" Nullable="false" />
-          <Property Name="good_name" Type="String" MaxLength="100" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="part_name" Type="String" MaxLength="100" FixedLength="false" Unicode="true" Nullable="false" />
           <Property Name="unit_id" Type="Int64" Nullable="false" />
-          <NavigationProperty Name="unit" Relationship="Self.FK__unit_id" FromRole="good" ToRole="unit" />
+          <NavigationProperty Name="UnitPart" Relationship="Self.FK__unit_id" FromRole="Part" ToRole="UnitPart" />
         </EntityType>
-        <EntityType Name="unit">
+        <EntityType Name="UnitPart">
           <Key>
             <PropertyRef Name="ID" />
           </Key>
           <Property Name="ID" Type="Int64" Nullable="false" />
           <Property Name="unit_name" Type="String" MaxLength="100" FixedLength="false" Unicode="true" Nullable="false" />
-          <NavigationProperty Name="goods" Relationship="Self.FK__unit_id" FromRole="unit" ToRole="good" />
+          <NavigationProperty Name="Parts" Relationship="Self.FK__unit_id" FromRole="UnitPart" ToRole="Part" />
         </EntityType>
-        <EntityType Name="warehouse">
+        <EntityType Name="Warehouse">
           <Key>
             <PropertyRef Name="ID" />
           </Key>
@@ -78,24 +78,24 @@
           <Property Name="warehouse_name" Type="String" MaxLength="100" FixedLength="false" Unicode="true" Nullable="false" />
         </EntityType>
         <Association Name="FK__unit_id">
-          <End Role="unit" Type="Self.unit" Multiplicity="1" />
-          <End Role="good" Type="Self.good" Multiplicity="*" />
+          <End Role="UnitPart" Type="Self.UnitPart" Multiplicity="1" />
+          <End Role="Part" Type="Self.Part" Multiplicity="*" />
           <ReferentialConstraint>
-            <Principal Role="unit">
+            <Principal Role="UnitPart">
               <PropertyRef Name="ID" />
             </Principal>
-            <Dependent Role="good">
+            <Dependent Role="Part">
               <PropertyRef Name="unit_id" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
         <EntityContainer Name="HREntitiesStore" annotation:LazyLoadingEnabled="true">
-          <EntitySet Name="goods" EntityType="Self.good" />
-          <EntitySet Name="units" EntityType="Self.unit" />
-          <EntitySet Name="warehouses" EntityType="Self.warehouse" />
+          <EntitySet Name="Parts" EntityType="Self.Part" />
+          <EntitySet Name="UnitParts" EntityType="Self.UnitPart" />
+          <EntitySet Name="Warehouses" EntityType="Self.Warehouse" />
           <AssociationSet Name="FK__unit_id" Association="Self.FK__unit_id">
-            <End Role="unit" EntitySet="units" />
-            <End Role="good" EntitySet="goods" />
+            <End Role="UnitPart" EntitySet="UnitParts" />
+            <End Role="Part" EntitySet="Parts" />
           </AssociationSet>
         </EntityContainer>
       </Schema>
@@ -104,26 +104,26 @@
     <edmx:Mappings>
       <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
         <EntityContainerMapping StorageEntityContainer="HRModelStoreContainer" CdmEntityContainer="HREntitiesStore">
-          <EntitySetMapping Name="goods">
-            <EntityTypeMapping TypeName="HRModel.good">
-              <MappingFragment StoreEntitySet="good">
-                <ScalarProperty Name="ID" ColumnName="good_id" />
-                <ScalarProperty Name="good_name" ColumnName="good_name" />
+          <EntitySetMapping Name="Parts">
+            <EntityTypeMapping TypeName="HRModel.Part">
+              <MappingFragment StoreEntitySet="Part">
+                <ScalarProperty Name="ID" ColumnName="part_id" />
+                <ScalarProperty Name="part_name" ColumnName="part_name" />
                 <ScalarProperty Name="unit_id" ColumnName="unit_id" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
-          <EntitySetMapping Name="units">
-            <EntityTypeMapping TypeName="HRModel.unit">
-              <MappingFragment StoreEntitySet="unit">
+          <EntitySetMapping Name="UnitParts">
+            <EntityTypeMapping TypeName="HRModel.UnitPart">
+              <MappingFragment StoreEntitySet="UnitPart">
                 <ScalarProperty Name="ID" ColumnName="unit_id" />
                 <ScalarProperty Name="unit_name" ColumnName="unit_name" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
-          <EntitySetMapping Name="warehouses">
-            <EntityTypeMapping TypeName="HRModel.warehouse">
-              <MappingFragment StoreEntitySet="warehouse">
+          <EntitySetMapping Name="Warehouses">
+            <EntityTypeMapping TypeName="HRModel.Warehouse">
+              <MappingFragment StoreEntitySet="Warehouse">
                 <ScalarProperty Name="ID" ColumnName="warehouse_id" />
                 <ScalarProperty Name="warehouse_name" ColumnName="warehouse_name" />
               </MappingFragment>

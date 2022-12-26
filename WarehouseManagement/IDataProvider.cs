@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.Data;
 using System.Linq;
@@ -11,8 +12,8 @@ namespace WarehouseManagement
     {
         int Order { get; }
         string ButtonText { get; }
-        IEnumerable<IEntity> GetData();
-        string Save();
+        IList GetData();
+        void Save(IEnumerable<IEntity> List);
 
     }
 }

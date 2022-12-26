@@ -25,8 +25,8 @@ namespace StoreManagement.Model
             throw new UnintentionalCodeFirstException();
         }
     
-        public virtual DbSet<Part> goods { get; set; }
-        public virtual DbSet<UnitPart> units { get; set; }
-        public virtual DbSet<Warehouse> warehouses { get; set; }
+        public virtual DbSet<Part> Parts { get; set; }
+        public virtual DbSet<UnitPart> UnitParts { get; set; }
+        public virtual DbSet<Warehouse> Warehouses { get; set; }
     }
 }

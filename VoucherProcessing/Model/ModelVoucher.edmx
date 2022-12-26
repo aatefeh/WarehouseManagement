@@ -5,7 +5,7 @@
     <!-- SSDL content -->
     <edmx:StorageModels>
       <Schema Namespace="HRModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
-        <EntityType Name="factor">
+        <EntityType Name="Factor">
           <Key>
             <PropertyRef Name="factor_id" />
           </Key>
@@ -15,44 +15,44 @@
           <Property Name="customer_id" Type="bigint" Nullable="false" />
         </EntityType>
         <!--Errors Found During Generation:
-warning 6002: The table/view 'HR.dbo.factor_item' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
-        <EntityType Name="factor_item">
+warning 6002: The table/view 'HR.dbo.FactorItem' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+        <EntityType Name="FactorItem">
           <Key>
             <PropertyRef Name="factor_id" />
             <PropertyRef Name="warehouse_id" />
-            <PropertyRef Name="good_id" />
-            <PropertyRef Name="good_number" />
+            <PropertyRef Name="part_id" />
+            <PropertyRef Name="part_number" />
           </Key>
           <Property Name="factor_id" Type="bigint" Nullable="false" />
           <Property Name="warehouse_id" Type="bigint" Nullable="false" />
-          <Property Name="good_id" Type="bigint" Nullable="false" />
-          <Property Name="good_number" Type="bigint" Nullable="false" />
+          <Property Name="part_id" Type="bigint" Nullable="false" />
+          <Property Name="part_number" Type="bigint" Nullable="false" />
         </EntityType>
         <Association Name="FK__factor_id">
-          <End Role="factor" Type="Self.factor" Multiplicity="1" />
-          <End Role="factor_item" Type="Self.factor_item" Multiplicity="*" />
+          <End Role="Factor" Type="Self.Factor" Multiplicity="1" />
+          <End Role="FactorItem" Type="Self.FactorItem" Multiplicity="*" />
           <ReferentialConstraint>
-            <Principal Role="factor">
+            <Principal Role="Factor">
               <PropertyRef Name="factor_id" />
             </Principal>
-            <Dependent Role="factor_item">
+            <Dependent Role="FactorItem">
               <PropertyRef Name="factor_id" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
         <EntityContainer Name="HRModelStoreContainer">
-          <EntitySet Name="factor" EntityType="Self.factor" Schema="dbo" store:Type="Tables" />
-          <EntitySet Name="factor_item" EntityType="Self.factor_item" store:Type="Tables" store:Schema="dbo">
+          <EntitySet Name="Factor" EntityType="Self.Factor" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="FactorItem" EntityType="Self.FactorItem" store:Type="Tables" store:Schema="dbo">
             <DefiningQuery>SELECT 
-    [factor_item].[factor_id] AS [factor_id], 
-    [factor_item].[warehouse_id] AS [warehouse_id], 
-    [factor_item].[good_id] AS [good_id], 
-    [factor_item].[good_number] AS [good_number]
-    FROM [dbo].[factor_item] AS [factor_item]</DefiningQuery>
+    [FactorItem].[factor_id] AS [factor_id], 
+    [FactorItem].[warehouse_id] AS [warehouse_id], 
+    [FactorItem].[part_id] AS [part_id], 
+    [FactorItem].[part_number] AS [part_number]
+    FROM [dbo].[FactorItem] AS [FactorItem]</DefiningQuery>
           </EntitySet>
           <AssociationSet Name="FK__factor_id" Association="Self.FK__factor_id">
-            <End Role="factor" EntitySet="factor" />
-            <End Role="factor_item" EntitySet="factor_item" />
+            <End Role="Factor" EntitySet="Factor" />
+            <End Role="FactorItem" EntitySet="FactorItem" />
           </AssociationSet>
         </EntityContainer>
       </Schema>
@@ -60,7 +60,7 @@ warning 6002: The table/view 'HR.dbo.factor_item' does not have a primary key de
     <!-- CSDL content -->
     <edmx:ConceptualModels>
       <Schema Namespace="HRModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
-        <EntityType Name="factor">
+        <EntityType Name="Factor">
           <Key>
             <PropertyRef Name="ID" />
           </Key>
@@ -68,39 +68,39 @@ warning 6002: The table/view 'HR.dbo.factor_item' does not have a primary key de
           <Property Name="factor_date" Type="DateTime" Nullable="false" Precision="3" />
           <Property Name="factor_type" Type="String" MaxLength="10" FixedLength="false" Unicode="true" Nullable="false" />
           <Property Name="customer_id" Type="Int64" Nullable="false" />
-          <NavigationProperty Name="factor_item" Relationship="Self.FK__factor_id" FromRole="factor" ToRole="factor_item" />
+          <NavigationProperty Name="FactorItems" Relationship="Self.FK__factor_id" FromRole="Factor" ToRole="FactorItem" />
         </EntityType>
-        <EntityType Name="factor_item">
+        <EntityType Name="FactorItem">
           <Key>
             <PropertyRef Name="ID" />
             <PropertyRef Name="warehouse_id" />
-            <PropertyRef Name="good_id" />
-            <PropertyRef Name="good_number" />
+            <PropertyRef Name="part_id" />
+            <PropertyRef Name="part_number" />
           </Key>
           <Property Name="ID" Type="Int64" Nullable="false" />
           <Property Name="warehouse_id" Type="Int64" Nullable="false" />
-          <Property Name="good_id" Type="Int64" Nullable="false" />
-          <Property Name="good_number" Type="Int64" Nullable="false" />
-          <NavigationProperty Name="factor" Relationship="Self.FK__factor_id" FromRole="factor_item" ToRole="factor" />
+          <Property Name="part_id" Type="Int64" Nullable="false" />
+          <Property Name="part_number" Type="Int64" Nullable="false" />
+          <NavigationProperty Name="Factor" Relationship="Self.FK__factor_id" FromRole="FactorItem" ToRole="Factor" />
         </EntityType>
         <Association Name="FK__factor_id">
-          <End Role="factor" Type="Self.factor" Multiplicity="1" />
-          <End Role="factor_item" Type="Self.factor_item" Multiplicity="*" />
+          <End Role="Factor" Type="Self.Factor" Multiplicity="1" />
+          <End Role="FactorItem" Type="Self.FactorItem" Multiplicity="*" />
           <ReferentialConstraint>
-            <Principal Role="factor">
+            <Principal Role="Factor">
               <PropertyRef Name="ID" />
             </Principal>
-            <Dependent Role="factor_item">
+            <Dependent Role="FactorItem">
               <PropertyRef Name="ID" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
         <EntityContainer Name="HREntitiesVoucher" annotation:LazyLoadingEnabled="true">
-          <EntitySet Name="factors" EntityType="Self.factor" />
-          <EntitySet Name="factor_item" EntityType="Self.factor_item" />
+          <EntitySet Name="Factors" EntityType="Self.Factor" />
+          <EntitySet Name="FactorItems" EntityType="Self.FactorItem" />
           <AssociationSet Name="FK__factor_id" Association="Self.FK__factor_id">
-            <End Role="factor" EntitySet="factors" />
-            <End Role="factor_item" EntitySet="factor_item" />
+            <End Role="Factor" EntitySet="Factors" />
+            <End Role="FactorItem" EntitySet="FactorItems" />
           </AssociationSet>
         </EntityContainer>
       </Schema>
@@ -109,9 +109,9 @@ warning 6002: The table/view 'HR.dbo.factor_item' does not have a primary key de
     <edmx:Mappings>
       <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
         <EntityContainerMapping StorageEntityContainer="HRModelStoreContainer" CdmEntityContainer="HREntitiesVoucher">
-          <EntitySetMapping Name="factors">
-            <EntityTypeMapping TypeName="HRModel.factor">
-              <MappingFragment StoreEntitySet="factor">
+          <EntitySetMapping Name="Factors">
+            <EntityTypeMapping TypeName="HRModel.Factor">
+              <MappingFragment StoreEntitySet="Factor">
                 <ScalarProperty Name="ID" ColumnName="factor_id" />
                 <ScalarProperty Name="factor_date" ColumnName="factor_date" />
                 <ScalarProperty Name="factor_type" ColumnName="factor_type" />
@@ -119,13 +119,13 @@ warning 6002: The table/view 'HR.dbo.factor_item' does not have a primary key de
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
-          <EntitySetMapping Name="factor_item">
-            <EntityTypeMapping TypeName="HRModel.factor_item">
-              <MappingFragment StoreEntitySet="factor_item">
+          <EntitySetMapping Name="FactorItems">
+            <EntityTypeMapping TypeName="HRModel.FactorItem">
+              <MappingFragment StoreEntitySet="FactorItem">
                 <ScalarProperty Name="ID" ColumnName="factor_id" />
                 <ScalarProperty Name="warehouse_id" ColumnName="warehouse_id" />
-                <ScalarProperty Name="good_id" ColumnName="good_id" />
-                <ScalarProperty Name="good_number" ColumnName="good_number" />
+                <ScalarProperty Name="part_id" ColumnName="part_id" />
+                <ScalarProperty Name="part_number" ColumnName="part_number" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>

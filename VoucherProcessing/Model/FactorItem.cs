@@ -7,17 +7,18 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace StoreManagement.Model
+namespace VoucherProcessing.Model
 {
     using System;
     using System.Collections.Generic;
     
-    public partial class Part
+    public partial class FactorItem
     {
         public long ID { get; set; }
-        public string good_name { get; set; }
-        public long unit_id { get; set; }
+        public long warehouse_id { get; set; }
+        public long part_id { get; set; }
+        public long part_number { get; set; }
     
-        public virtual UnitPart unit { get; set; }
+        public virtual Factor Factor { get; set; }
     }
 }

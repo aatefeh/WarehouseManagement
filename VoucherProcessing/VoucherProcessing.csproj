@@ -52,10 +52,10 @@
   <ItemGroup>
     <Compile Include="FactorItem\FactorItem.cs" />
     <Compile Include="Factor\Factor.cs" />
-    <Compile Include="Model\factor.cs">
+    <Compile Include="Model\Factor.cs">
       <DependentUpon>ModelVoucher.tt</DependentUpon>
     </Compile>
-    <Compile Include="Model\factor_item.cs">
+    <Compile Include="Model\FactorItem.cs">
       <DependentUpon>ModelVoucher.tt</DependentUpon>
     </Compile>
     <Compile Include="Model\ModelVoucher.Context.cs">
