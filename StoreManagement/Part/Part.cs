@@ -15,6 +15,7 @@ namespace StoreManagement.Model
 {
     public partial class Part : IEntity
     {
+        public string UnitName { get; set; }
     }
 
     public class PartProvider : IDataProvider
@@ -23,20 +24,44 @@ namespace StoreManagement.Model
 
         public string ButtonText => "کالا";
 
-        public IList GetData()
+        public IEnumerable<IEntity> GetData()
         {
             using (var context = new HREntitiesStore())
             {
-                var partsQuery = (from part_item in context.Parts
-                                  join unit_item in context.UnitParts on part_item.unit_id equals unit_item.ID
-                                  select new { Id = part_item.ID, Name = part_item.part_name, UnitId = part_item.unit_id }).ToList();
-                return partsQuery;
+                return (from part in context.Parts
+                        join unit in context.UnitParts
+                        on part.unit_id equals unit.ID
+                        select new Part
+                        {
+                            ID = part.ID,
+                            part_name = part.part_name,
+                            UnitName = unit.unit_name
+                        }).ToList();
             }
         }
 
-        public void Save(IEnumerable<IEntity> List)
+        public IReadOnlyCollection<ColumnInfo> GetColumns()
         {
+            return new ColumnInfo[]
+            {
+                new ColumnInfo
+                {
+                    Name = nameof(Part.ID),
+                    Title = "شناسه"
+                }
+            };
+        }
 
+        public void Save()
+        {
+            //context.SaveChanges();
+
+        }
+
+        public class ColumnInfo
+        {
+            public string Name { get; set; }
+            public string Title { get; set; }
         }
     }
 }

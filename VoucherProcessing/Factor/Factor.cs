@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.ComponentModel;
 using System.ComponentModel.Design;
+using System.Data;
 using System.Data.Entity.Core.Objects.DataClasses;
 using System.Linq;
 using System.Runtime.InteropServices;
@@ -25,18 +26,27 @@ namespace VoucherProcessing.Model
 
         public string ButtonText => "فاکتور";
 
-        public IList GetData()
+        public DataTable GetData()
         {
             using (var context = new HREntitiesVoucher())
             {
+                DataTable dbTable = new DataTable();
                 var factoreQuery = (from factor in context.Factors
                                   join factor_item in context.FactorItems on factor.ID equals factor_item.ID
-                                  select new { Id = factor.ID, Date = factor.factor_date, Type=factor.factor_type,CoustomerId = factor.customer_id}).ToList();
-                return factoreQuery;
+                                  select new { کد_فاکتور = factor.ID, تاریخ_فاکتور = factor.factor_date, نوع_فاکتور=factor.factor_type,کد_مشتری = factor.customer_id}).ToList();
+                dbTable.Columns.Add("کد_فاکتور");
+                dbTable.Columns.Add("تاریخ_فاکتور");
+                dbTable.Columns.Add("نوع_فاکتور");
+                dbTable.Columns.Add("کد_مشتری");
+                foreach (var item in factoreQuery)
+                {
+                    dbTable.Rows.Add(item.کد_فاکتور, item.تاریخ_فاکتور, item.نوع_فاکتور, item.کد_مشتری);
+                }
+                return dbTable;
             }
         }
 
-        public void Save(IEnumerable<IEntity> List)
+        public void Save()
         {
         }
     }

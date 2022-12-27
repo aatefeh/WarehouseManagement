@@ -20,18 +20,26 @@ namespace StoreManagement.Model
 
         public string ButtonText => "واحد سنجش";
 
-        public IList GetData()
+
+        public DataTable GetData()
         {
             using (var context = new HREntitiesStore())
             {
-                var allUnitParts = (from unit_part in context.UnitParts
+                DataTable dbTable = new DataTable();
+                var unitPartsQuery = (from unit_part in context.UnitParts
                                    join part in context.Parts on unit_part.ID equals part.unit_id
-                                    select new { Id = unit_part.ID, Name = unit_part.unit_name }).ToList();
-                return allUnitParts;
+                                    select new { کد = unit_part.ID, واحد_سنجش = unit_part.unit_name }).ToList();
+                dbTable.Columns.Add("کد");
+                dbTable.Columns.Add("واحد_سنجش");
+                foreach (var item in unitPartsQuery)
+                {
+                    dbTable.Rows.Add(item.کد,item.واحد_سنجش);
+                }
+                return dbTable;
             }
         }
 
-        public void Save(IEnumerable<IEntity> List)
+        public void Save()
         {
         }
     }

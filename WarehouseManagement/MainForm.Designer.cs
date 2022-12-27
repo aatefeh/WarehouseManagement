@@ -64,7 +64,6 @@ namespace WarehouseManagement
             this.MainDataGridView.RowHeadersWidth = 51;
             this.MainDataGridView.Size = new System.Drawing.Size(680, 426);
             this.MainDataGridView.TabIndex = 1;
-            this.MainDataGridView.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridView1_CellContentClick);
             // 
             // Save
             // 

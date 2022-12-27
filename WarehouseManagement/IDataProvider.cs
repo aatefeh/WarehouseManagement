@@ -12,8 +12,8 @@ namespace WarehouseManagement
     {
         int Order { get; }
         string ButtonText { get; }
-        IList GetData();
-        void Save(IEnumerable<IEntity> List);
+        DataTable GetData();
+        void Save();
 
     }
 }

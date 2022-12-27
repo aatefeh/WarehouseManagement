@@ -21,6 +21,8 @@ namespace WarehouseManagement
         private int i = 0;
         private Type LastClickeTable;
 
+        private SqlDataAdapter mysql=new SqlDataAdapter();
+        private BindingSource mybinding=new BindingSource();
      
         public MainForm()
         {
@@ -68,6 +70,7 @@ namespace WarehouseManagement
         {
             System.Windows.Forms.Button btnsender = (System.Windows.Forms.Button)sender;
             var senderTag = (int)btnsender.Tag;
+
             foreach (var clicked in ButtonWasClicked)
             {
                 if (clicked.Key == senderTag)
@@ -80,10 +83,8 @@ namespace WarehouseManagement
                         {
                             LastClickeTable = clicked.Value;
                             var dataProvider = (IDataProvider)Activator.CreateInstance(implType);
-                            
-                            var DBTable = new DataTable();
-                            var entities = dataProvider.GetData();
-                            MainDataGridView.DataSource = entities;
+                            DataTable dbTable = dataProvider.GetData();
+                            MainDataGridView.Columns[0].ReadOnlyDataSource = dbTable;
                             break;
                         }
                     }
@@ -99,16 +100,11 @@ namespace WarehouseManagement
                 if (implType == LastClickeTable)
                 {
                     var dataProvider = (IDataProvider)Activator.CreateInstance(implType);
-                    //var entities = dataProvider.Save();
+                    //MainDataGridView.EndEdit();
+                    dataProvider.Save();
                     break;
                 }
             }
-            //SqlDataAdapter dataAdapter=new SqlDataAdapter("select * from Table")
-        }
-
-        private void dataGridView1_CellContentClick(object sender, DataGridViewCellEventArgs e)
-        {
-
         }
     }
 }
