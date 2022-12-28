@@ -21,24 +21,36 @@ namespace StoreManagement.Model
         public string ButtonText => "واحد سنجش";
 
 
-        public DataTable GetData()
+        public IEnumerable<IEntity> GetData()
         {
             using (var context = new HREntitiesStore())
             {
-                DataTable dbTable = new DataTable();
-                var unitPartsQuery = (from unit_part in context.UnitParts
-                                   join part in context.Parts on unit_part.ID equals part.unit_id
-                                    select new { کد = unit_part.ID, واحد_سنجش = unit_part.unit_name }).ToList();
-                dbTable.Columns.Add("کد");
-                dbTable.Columns.Add("واحد_سنجش");
-                foreach (var item in unitPartsQuery)
-                {
-                    dbTable.Rows.Add(item.کد,item.واحد_سنجش);
-                }
-                return dbTable;
+                return (from unit in context.UnitParts
+                        join part in context.Parts on unit.ID equals part.unit_id
+                        select new UnitPart
+                        {
+                            ID = unit.ID,
+                            unit_name = unit.unit_name
+                        }).ToList();
             }
         }
 
+        public IReadOnlyCollection<ColumnInfo> GetColumns()
+        {
+            return new ColumnInfo[]
+            {
+                new ColumnInfo
+                {
+                    Name = nameof(UnitPart.ID),
+                    Title = "شناسه"
+                },
+                new ColumnInfo
+                {
+                    Name = nameof(UnitPart.unit_name),
+                    Title = "نام واحد سنجش"
+                }
+            };
+        }
         public void Save()
         {
         }

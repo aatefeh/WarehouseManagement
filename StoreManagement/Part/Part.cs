@@ -4,7 +4,6 @@ using System.Collections;
 using System.Collections.Generic;
 using System.ComponentModel.Design;
 using System.Data;
-using System.Data.Entity;
 using System.Linq;
 using System.Runtime.Remoting.Contexts;
 using System.Text;
@@ -48,6 +47,16 @@ namespace StoreManagement.Model
                 {
                     Name = nameof(Part.ID),
                     Title = "شناسه"
+                },
+                new ColumnInfo
+                {
+                    Name = nameof(Part.part_name),
+                    Title = "نام کالا"
+                },
+                new ColumnInfo
+                {
+                    Name = nameof(Part.UnitName),
+                    Title = "نام واحد سنجش"
                 }
             };
         }
@@ -56,12 +65,6 @@ namespace StoreManagement.Model
         {
             //context.SaveChanges();
 
-        }
-
-        public class ColumnInfo
-        {
-            public string Name { get; set; }
-            public string Title { get; set; }
         }
     }
 }

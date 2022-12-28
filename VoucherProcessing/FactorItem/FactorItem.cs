@@ -20,24 +20,46 @@ namespace VoucherProcessing.Model
 
         public string ButtonText => "آیتم فاکتور";
 
-        public DataTable GetData()
+        public IEnumerable<IEntity> GetData()
         {
             using (var context = new HREntitiesVoucher())
             {
-                DataTable dbTable = new DataTable();
-                var factoreItemQuery = (from factor_item in context.FactorItems
-                                        join factor in context.Factors on factor_item.ID equals factor.ID
-                                        select new { کد_فاکتور = factor_item.ID, کد_انبار = factor_item.warehouse_id, کد_کالا = factor_item.part_id, تعداد_کالا = factor_item.part_number}).ToList();
-                dbTable.Columns.Add("کد_فاکتور");
-                dbTable.Columns.Add("کد_انبار");
-                dbTable.Columns.Add("کد_کالا");
-                dbTable.Columns.Add("تعداد_کالا");
-                foreach (var item in factoreItemQuery)
-                {
-                    dbTable.Rows.Add(item.کد_فاکتور, item.کد_انبار, item.کد_کالا, item.تعداد_کالا);
-                }
-                return dbTable;
+                return (from factor_item in context.FactorItems
+                        join factor in context.Factors on factor_item.ID equals factor.ID
+                        select new FactorItem
+                        {
+                            ID = factor_item.ID,
+                            warehouse_id = factor_item.warehouse_id,
+                            part_id = factor_item.part_id,
+                            part_number=factor_item.part_number
+                        }).ToList();
             }
+        }
+        public IReadOnlyCollection<ColumnInfo> GetColumns()
+        {
+            return new ColumnInfo[]
+            {
+                new ColumnInfo
+                {
+                    Name = nameof(FactorItem.ID),
+                    Title = "شناسه"
+                },
+                new ColumnInfo
+                {
+                    Name = nameof(FactorItem.warehouse_id),
+                    Title = "شناسه انبار"
+                },
+                new ColumnInfo
+                {
+                    Name = nameof(FactorItem.part_id),
+                    Title = "شناسه کالا"
+                },
+                new ColumnInfo
+                {
+                    Name = nameof(FactorItem.part_number),
+                    Title = "تعداد کالا"
+                }
+            };
         }
         public void Save()
         {

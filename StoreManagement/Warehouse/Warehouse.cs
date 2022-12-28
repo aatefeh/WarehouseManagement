@@ -20,23 +20,35 @@ namespace StoreManagement.Model
 
         public string ButtonText => "انبار";
 
-        public DataTable GetData()
+        public IEnumerable<IEntity> GetData()
         {
             using (var context = new HREntitiesStore())
             {
-                DataTable dbTable = new DataTable();
-                var warehousesQuery = (from warehouse in context.Warehouses
-                                      select new {کد_انبار=warehouse.ID,نام_انبار=warehouse.warehouse_name}).ToList();
-                dbTable.Columns.Add("کد_انبار");
-                dbTable.Columns.Add("نام_انبار");
-                foreach (var item in warehousesQuery)
-                {
-                    dbTable.Rows.Add(item.کد_انبار, item.نام_انبار);
-                }
-                return dbTable;
+                return (from warehouse in context.Warehouses
+                        select new Warehouse
+                        {
+                            ID = warehouse.ID,
+                            warehouse_name = warehouse.warehouse_name
+                        }).ToList();
             }
         }
 
+        public IReadOnlyCollection<ColumnInfo> GetColumns()
+        {
+            return new ColumnInfo[]
+            {
+                new ColumnInfo
+                {
+                    Name = nameof(Warehouse.ID),
+                    Title = "شناسه"
+                },
+                new ColumnInfo
+                {
+                    Name = nameof(Warehouse.warehouse_name),
+                    Title = "نام انبار"
+                }
+            };
+        }
         public void Save()
         {
         }

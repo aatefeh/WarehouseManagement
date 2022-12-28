@@ -83,7 +83,16 @@ namespace WarehouseManagement
                         {
                             LastClickeTable = clicked.Value;
                             var dataProvider = (IDataProvider)Activator.CreateInstance(implType);
-                            DataTable dbTable = dataProvider.GetData();
+                            var entities = dataProvider.GetData();
+                            var columninfo = dataProvider.GetColumns();
+                            foreach(var col in columninfo)
+                            {
+                                foreach(var entity in entities)
+                                {
+
+                                }
+
+                            }
                             MainDataGridView.Columns[0].ReadOnlyDataSource = dbTable;
                             break;
                         }
