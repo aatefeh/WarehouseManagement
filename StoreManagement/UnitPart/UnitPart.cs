@@ -35,22 +35,22 @@ namespace StoreManagement.Model
             }
         }
 
-        public IReadOnlyCollection<ColumnInfo> GetColumns()
-        {
-            return new ColumnInfo[]
-            {
-                new ColumnInfo
-                {
-                    Name = nameof(UnitPart.ID),
-                    Title = "شناسه"
-                },
-                new ColumnInfo
-                {
-                    Name = nameof(UnitPart.unit_name),
-                    Title = "نام واحد سنجش"
-                }
-            };
-        }
+        //public IReadOnlyCollection<ColumnInfo> GetColumns()
+        //{
+        //    return new ColumnInfo[]
+        //    {
+        //        new ColumnInfo
+        //        {
+        //            Name = nameof(UnitPart.ID),
+        //            Title = "شناسه"
+        //        },
+        //        new ColumnInfo
+        //        {
+        //            Name = nameof(UnitPart.unit_name),
+        //            Title = "نام واحد سنجش"
+        //        }
+        //    };
+        //}
         public void Save()
         {
         }

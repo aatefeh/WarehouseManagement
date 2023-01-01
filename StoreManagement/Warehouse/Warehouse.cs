@@ -29,26 +29,27 @@ namespace StoreManagement.Model
                         {
                             ID = warehouse.ID,
                             warehouse_name = warehouse.warehouse_name
-                        }).ToList();
+                        }
+                        ).ToList();
             }
         }
 
-        public IReadOnlyCollection<ColumnInfo> GetColumns()
-        {
-            return new ColumnInfo[]
-            {
-                new ColumnInfo
-                {
-                    Name = nameof(Warehouse.ID),
-                    Title = "شناسه"
-                },
-                new ColumnInfo
-                {
-                    Name = nameof(Warehouse.warehouse_name),
-                    Title = "نام انبار"
-                }
-            };
-        }
+        //public IReadOnlyCollection<ColumnInfo> GetColumns()
+        //{
+        //    return new ColumnInfo[]
+        //    {
+        //        new ColumnInfo
+        //        {
+        //            Name = nameof(Warehouse.ID),
+        //            Title = "شناسه"
+        //        },
+        //        new ColumnInfo
+        //        {
+        //            Name = nameof(Warehouse.warehouse_name),
+        //            Title = "نام انبار"
+        //        }
+        //    };
+        //}
         public void Save()
         {
         }

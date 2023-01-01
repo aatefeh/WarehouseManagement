@@ -37,37 +37,37 @@ namespace VoucherProcessing.Model
                             ID = factor.ID,
                             factor_date = factor.factor_date,
                             factor_type = factor.factor_type,
-                            customer_id=factor.customer_id
+                            customer_id = factor.customer_id
                         }).ToList();
             }
         }
 
-        public IReadOnlyCollection<ColumnInfo> GetColumns()
-        {
-            return new ColumnInfo[]
-            {
-                new ColumnInfo
-                {
-                    Name = nameof(Factor.ID),
-                    Title = "شناسه"
-                },
-                new ColumnInfo
-                {
-                    Name = nameof(Factor.factor_date),
-                    Title = "تاریخ فاکتور"
-                },
-                new ColumnInfo
-                {
-                    Name = nameof(Factor.factor_type),
-                    Title = "نوع فاکتور"
-                },
-                new ColumnInfo
-                {
-                    Name = nameof(Factor.customer_id),
-                    Title = "شناسه مشتری"
-                }
-            };
-        }
+        //public IReadOnlyCollection<ColumnInfo> GetColumns()
+        //{
+        //    return new ColumnInfo[]
+        //    {
+        //        new ColumnInfo
+        //        {
+        //            Name = nameof(Factor.ID),
+        //            Title = "شناسه"
+        //        },
+        //        new ColumnInfo
+        //        {
+        //            Name = nameof(Factor.factor_date),
+        //            Title = "تاریخ فاکتور"
+        //        },
+        //        new ColumnInfo
+        //        {
+        //            Name = nameof(Factor.factor_type),
+        //            Title = "نوع فاکتور"
+        //        },
+        //        new ColumnInfo
+        //        {
+        //            Name = nameof(Factor.customer_id),
+        //            Title = "شناسه مشتری"
+        //        }
+        //    };
+        //}
         public void Save()
         {
         }

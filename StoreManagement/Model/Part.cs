@@ -17,7 +17,7 @@ namespace StoreManagement.Model
         public long ID { get; set; }
         public string part_name { get; set; }
         public long unit_id { get; set; }
-
+    
         public virtual UnitPart UnitPart { get; set; }
     }
 }

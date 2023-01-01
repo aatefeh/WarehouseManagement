@@ -6,12 +6,9 @@ using System.Threading.Tasks;
 
 namespace WarehouseManagement
 {
-    class ColumnInfo
+    public class ColumnInfo
     {
         public string Name { get; set; }
         public string Title { get; set; }
-
-        
-        
     }
 }

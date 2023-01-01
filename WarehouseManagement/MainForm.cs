@@ -10,6 +10,7 @@ using System.IO;
 using System.Linq;
 using System.Reflection;
 using System.Windows.Controls;
+using System.Windows.Documents;
 using System.Windows.Forms;
 using System.Windows.Navigation;
 
@@ -84,16 +85,17 @@ namespace WarehouseManagement
                             LastClickeTable = clicked.Value;
                             var dataProvider = (IDataProvider)Activator.CreateInstance(implType);
                             var entities = dataProvider.GetData();
-                            var columninfo = dataProvider.GetColumns();
-                            foreach(var col in columninfo)
-                            {
-                                foreach(var entity in entities)
-                                {
+                            //var columninfo = dataProvider.GetColumns();
+                            //foreach(var col in columninfo)
+                            //{
+                            //    foreach(var entity in entities)
+                            //    {
 
-                                }
+                            //    }
 
-                            }
-                            MainDataGridView.Columns[0].ReadOnlyDataSource = dbTable;
+                            //}
+                            //MainDataGridView.Columns[0].ReadOnlyDataSource = dbTable;
+                            MainDataGridView.DataSource = entities;
                             break;
                         }
                     }

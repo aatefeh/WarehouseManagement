@@ -31,7 +31,7 @@ namespace VoucherProcessing.Model
                             ID = factor_item.ID,
                             warehouse_id = factor_item.warehouse_id,
                             part_id = factor_item.part_id,
-                            part_number=factor_item.part_number
+                            part_number = factor_item.part_number
                         }).ToList();
             }
         }

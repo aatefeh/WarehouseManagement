@@ -10,6 +10,7 @@ using System.Text;
 using System.Threading.Tasks;
 using WarehouseManagement;
 
+
 namespace StoreManagement.Model
 {
     public partial class Part : IEntity
