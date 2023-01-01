@@ -28,15 +28,21 @@ namespace StoreManagement.Model
         {
             using (var context = new HREntitiesStore())
             {
-                return (from part in context.Parts
-                        join unit in context.UnitParts
+                return (IEnumerable<IEntity>)(from part in context.Set<Part>()
+                        join unit in context.Set<UnitPart>()
                         on part.unit_id equals unit.ID
-                        select new Part
+                        select new
                         {
-                            ID = part.ID,
-                            part_name = part.part_name,
+                            PartID = part.ID,
+                            PartName = part.part_name,
                             UnitName = unit.unit_name
-                        }).ToList();
+                        }).ToList()
+                        .Select(x => new Part
+                        {
+                            ID=x.PartID,
+                            part_name= x.PartName,
+                            UnitName = x.UnitName
+                        });
             }
         }
 

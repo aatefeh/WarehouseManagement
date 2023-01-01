@@ -24,32 +24,38 @@ namespace StoreManagement.Model
         {
             using (var context = new HREntitiesStore())
             {
-                return (from warehouse in context.Warehouses
-                        select new Warehouse
+                return (from w in context.Set<Warehouse>()
+                        select new
                         {
-                            ID = warehouse.ID,
-                            warehouse_name = warehouse.warehouse_name
+                            ID = w.ID,
+                            warehouse_name = w.warehouse_name
                         }
-                        ).ToList();
+                        ).ToList()
+                        .Select(x => new Warehouse
+                        {
+                            ID = x.ID,
+                            warehouse_name = x.warehouse_name
+
+                        });
             }
         }
 
-        //public IReadOnlyCollection<ColumnInfo> GetColumns()
-        //{
-        //    return new ColumnInfo[]
-        //    {
-        //        new ColumnInfo
-        //        {
-        //            Name = nameof(Warehouse.ID),
-        //            Title = "شناسه"
-        //        },
-        //        new ColumnInfo
-        //        {
-        //            Name = nameof(Warehouse.warehouse_name),
-        //            Title = "نام انبار"
-        //        }
-        //    };
-        //}
+        public IReadOnlyCollection<ColumnInfo> GetColumns()
+        {
+            return new ColumnInfo[]
+            {
+                new ColumnInfo
+                {
+                    Name = nameof(Warehouse.ID),
+                    Title = "شناسه"
+                },
+                new ColumnInfo
+                {
+                    Name = nameof(Warehouse.warehouse_name),
+                    Title = "نام انبار"
+                }
+            };
+        }
         public void Save()
         {
         }

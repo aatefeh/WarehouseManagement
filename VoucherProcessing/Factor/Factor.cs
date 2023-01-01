@@ -1,4 +1,5 @@
-﻿using System;
+﻿using StoreManagement.Model;
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
@@ -17,7 +18,6 @@ namespace VoucherProcessing.Model
 {
     public partial class Factor : IEntity
     {
-        public string CustomerName { get; set; }
     }
 
     public class FactorProvider : IDataProvider
@@ -30,44 +30,52 @@ namespace VoucherProcessing.Model
         {
             using (var context = new HREntitiesVoucher())
             {
-                return (from factor in context.Factors
-                        join item in context.FactorItems on factor.ID equals item.ID
-                        select new Factor
+                return (IEnumerable<IEntity>)(from factor in context.Set<Factor>()
+                                              join item in context.Set<FactorItem>()
+                                              on factor.ID equals item.ID
+                                              select new
+                                              {
+                                                  FactorID = factor.ID,
+                                                  FactorDate = factor.factor_date,
+                                                  FactorType = factor.factor_type,
+                                                  CustomerID=factor.customer_id
+                                              }).ToList()
+                        .Select(x => new Factor
                         {
-                            ID = factor.ID,
-                            factor_date = factor.factor_date,
-                            factor_type = factor.factor_type,
-                            customer_id = factor.customer_id
-                        }).ToList();
+                            ID=x.FactorID,
+                            factor_date= x.FactorDate,
+                            factor_type= x.FactorType,
+                            customer_id= x.CustomerID
+                        });
             }
         }
 
-        //public IReadOnlyCollection<ColumnInfo> GetColumns()
-        //{
-        //    return new ColumnInfo[]
-        //    {
-        //        new ColumnInfo
-        //        {
-        //            Name = nameof(Factor.ID),
-        //            Title = "شناسه"
-        //        },
-        //        new ColumnInfo
-        //        {
-        //            Name = nameof(Factor.factor_date),
-        //            Title = "تاریخ فاکتور"
-        //        },
-        //        new ColumnInfo
-        //        {
-        //            Name = nameof(Factor.factor_type),
-        //            Title = "نوع فاکتور"
-        //        },
-        //        new ColumnInfo
-        //        {
-        //            Name = nameof(Factor.customer_id),
-        //            Title = "شناسه مشتری"
-        //        }
-        //    };
-        //}
+        public IReadOnlyCollection<ColumnInfo> GetColumns()
+        {
+            return new ColumnInfo[]
+            {
+                new ColumnInfo
+                {
+                    Name = nameof(Factor.ID),
+                    Title = "شناسه"
+                },
+                new ColumnInfo
+                {
+                    Name = nameof(Factor.factor_date),
+                    Title = "تاریخ فاکتور"
+                },
+                new ColumnInfo
+                {
+                    Name = nameof(Factor.factor_type),
+                    Title = "نوع فاکتور"
+                },
+                new ColumnInfo
+                {
+                    Name = nameof(Factor.customer_id),
+                    Title = "شناسه مشتری"
+                }
+            };
+        }
         public void Save()
         {
         }

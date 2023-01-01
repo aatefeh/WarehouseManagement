@@ -25,32 +25,38 @@ namespace StoreManagement.Model
         {
             using (var context = new HREntitiesStore())
             {
-                return (from unit in context.UnitParts
-                        join part in context.Parts on unit.ID equals part.unit_id
-                        select new UnitPart
+                return (IEnumerable<IEntity>)(from unit in context.Set<UnitPart>()
+                                              join part in context.Set<Part>()
+                                              on unit.ID equals part.unit_id
+                                              select new
+                                              {
+                                                  UnitID = unit.ID,
+                                                  UnitName = unit.unit_name
+                                              }).ToList()
+                        .Select(x => new UnitPart
                         {
-                            ID = unit.ID,
-                            unit_name = unit.unit_name
-                        }).ToList();
+                            ID = x.UnitID,
+                            unit_name = x.UnitName
+                        });
             }
         }
 
-        //public IReadOnlyCollection<ColumnInfo> GetColumns()
-        //{
-        //    return new ColumnInfo[]
-        //    {
-        //        new ColumnInfo
-        //        {
-        //            Name = nameof(UnitPart.ID),
-        //            Title = "شناسه"
-        //        },
-        //        new ColumnInfo
-        //        {
-        //            Name = nameof(UnitPart.unit_name),
-        //            Title = "نام واحد سنجش"
-        //        }
-        //    };
-        //}
+        public IReadOnlyCollection<ColumnInfo> GetColumns()
+        {
+            return new ColumnInfo[]
+            {
+                new ColumnInfo
+                {
+                    Name = nameof(UnitPart.ID),
+                    Title = "شناسه"
+                },
+                new ColumnInfo
+                {
+                    Name = nameof(UnitPart.unit_name),
+                    Title = "نام واحد سنجش"
+                }
+            };
+        }
         public void Save()
         {
         }

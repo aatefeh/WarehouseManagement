@@ -13,7 +13,7 @@ namespace WarehouseManagement
         int Order { get; }
         string ButtonText { get; }
         IEnumerable<IEntity> GetData();
-        //IReadOnlyCollection<ColumnInfo> GetColumns();
+        IReadOnlyCollection<ColumnInfo> GetColumns();
         void Save();
 
     }

@@ -24,15 +24,23 @@ namespace VoucherProcessing.Model
         {
             using (var context = new HREntitiesVoucher())
             {
-                return (from factor_item in context.FactorItems
-                        join factor in context.Factors on factor_item.ID equals factor.ID
-                        select new FactorItem
-                        {
-                            ID = factor_item.ID,
-                            warehouse_id = factor_item.warehouse_id,
-                            part_id = factor_item.part_id,
-                            part_number = factor_item.part_number
-                        }).ToList();
+                return (IEnumerable<IEntity>)(from item in context.Set<FactorItem>()
+                                              join factor in context.Set<Factor>()
+                                              on item.ID equals factor.ID
+                                              select new
+                                              {
+                                                  ItemID = item.ID,
+                                                  WarehouseID = item.warehouse_id,
+                                                  PartID = item.part_id,
+                                                  PartNumber = item.part_number
+                                              }).ToList()
+                       .Select(x => new FactorItem
+                       {
+                           ID=x.ItemID,
+                           warehouse_id=x.WarehouseID,
+                           part_id=x.PartID,
+                           part_number=x.PartNumber
+                       });
             }
         }
         public IReadOnlyCollection<ColumnInfo> GetColumns()
